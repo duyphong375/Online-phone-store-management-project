@@ -18,6 +18,7 @@ void DocFileUser(vector <User> &DS_User)
 		return;
 	}
 	string line;
+	getline(filein,line); // Bo qua dong tieu de
 	getline(filein, line); // Bo qua tai khoan Admin
 	// Doc tung dong trong file data.csv va them vao DS_User
 	while(getline(filein, line))
@@ -36,7 +37,7 @@ void DocFileUser(vector <User> &DS_User)
 	filein.close();
 }
 
-void UpdateFile1(const vector<User> &DS_User)
+void UpdateFile1(const vector<User> &DS_User) 
 {
     ofstream fileout("datanew.csv", ios::out);
 
@@ -46,6 +47,7 @@ void UpdateFile1(const vector<User> &DS_User)
         return;
     }
 
+	fileout << "Tai Khoan,Mat Khau" << endl;
     for (const User &us : DS_User)
     {
         fileout << us.getUN() << ',' << us.getPW() << '\n';
