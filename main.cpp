@@ -7,47 +7,47 @@
 #include <iostream>
 #include <ctime>
 
-
 using namespace std;
 
 void DangKi(vector<SanPham> &DS_SanPham) 
 {
 	SetColor(0, 11);
-    cout << "\t---------- MOI BAN DANG KI TAI KHOAN ---------" << endl;
+    cout << "\t ---------- MOI BAN DANG KI TAI KHOAN ---------" << endl;
     string un, pw;
     SetColor(0, 15);
-    cout << "\t" << (char)26 << " " << " Ten dang nhap: ";
+    cout << "\t " << (char)26 << " " << "Ten dang nhap: ";
     cin.ignore();
     getline(cin, un);
     SetColor(0, 15);
-    cout << "\t" << (char)26 << " " << " Mat khau: ";
+    cout << "\t " << (char)26 << " " << "Mat khau: ";
     getline(cin, pw);
 
     ofstream fileout("data.csv", ios::app);
     if (!fileout.is_open()) 
 	{
-        cerr << " Khong the dang ki tai khoan !" << endl;
+        cerr << "Khong the mo file data.csv !" << endl;
         return;
     }
 
     fileout << un << "," << pw << endl;
     SetColor(0, 11);
-    cout << "\t" << (char)26 << " " << " Da tao tai khoan thanh cong ! " << endl;
+    cout << "\t " << (char)26 << " " << "Da tao tai khoan thanh cong ! " << endl;
     system("pause");
     fileout.close();
+    SetColor(0, 7);
 }
 
 void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User) 
 {
 	SetColor(0, 11);
-	cout << "\t--------- MOI BAN DANG NHAP TAI KHOAN --------" << endl;
+	cout << "\t --------- MOI BAN DANG NHAP TAI KHOAN --------" << endl;
     string un, pw;
     SetColor(0, 15);
-    cout << "\t" << (char)26 << " " << "Ten dang nhap: ";
+    cout << "\t " << (char)26 << " " << "Ten dang nhap: ";
     cin.ignore();
     getline(cin, un);
     SetColor(0, 15);
-    cout << "\t" << (char)26 << " " << "Mat khau: ";
+    cout << "\t " << (char)26 << " " << "Mat khau: ";
     getline(cin, pw);
 
     ifstream filein("data.csv");
@@ -77,14 +77,16 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
     if(kt) 
 	{
 		SetColor(0, 12);
-        cout << "\t" << (char)26 << " " << " Dang nhap thanh cong !" << endl;
+        cout << "\t " << (char)26 << " " << "Dang nhap thanh cong !" << endl;
         system("pause");
         if (un == "AdminCP" && pw == "AdminCP") 
 		{
 			SetColor(0,7);
 			Admin ad(un, pw);
-            MenuAdmin(ad, DS_SanPham, DS_User);
-        } else 
+			User us(un, pw);
+            MenuAdmin(ad, us, DS_SanPham, DS_User);
+        } 
+		else 
 		{
             User us(un, pw);
             MenuUser(us, DS_SanPham);
@@ -93,23 +95,24 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
 	else 
 	{
 		SetColor(0, 12);
-        cout << "\t" << (char)26 << " " << " Dang nhap that bai !" << endl;
-        cout << "\t" << (char)26 << " " << " Moi ban dang nhap lai !" << endl;
+        cout << "\t " << (char)26 << " " << "Dang nhap that bai !" << endl;
+        cout << "\t " << (char)26 << " " << "Moi ban dang nhap lai !" << endl;
         system("pause");
     }
+    SetColor(0, 7);
 }
 
 void DoiMatKhau() 
 {
 	SetColor(0, 11);
-    cout << "\t------------ MOI BAN DOI MAT KHAU ------------ " << endl;
+    cout << "\t ------------ MOI BAN DOI MAT KHAU ------------ " << endl;
     string un, pw;
     SetColor(0, 15);
-    cout << "\t" << (char)26 << " " << "Ten dang nhap: ";
+    cout << "\t " << (char)26 << " " << "Ten dang nhap: ";
     cin.ignore();
     getline(cin, un);
     SetColor(0, 15);
-    cout << "\t" << (char)26 << " " << "Mat khau cu: ";
+    cout << "\t " << (char)26 << " " << "Mat khau cu: ";
     getline(cin, pw);
 
     ifstream filein("data.csv");
@@ -134,12 +137,12 @@ void DoiMatKhau()
 		{
             kt = true;
             SetColor(0, 15);
-            cout << "\t" << (char)26 << " " << " Mat khau moi: ";
+            cout << "\t " << (char)26 << " " << "Mat khau moi: ";
             string new_pw;
             getline(cin, new_pw);
             fileout << un << "," << new_pw << endl;
             SetColor(0, 11);
-            cout << "\t" << (char)26 << " " << " Doi mat khau thanh cong !" << endl;
+            cout << "\t " << (char)26 << " " << "Doi mat khau thanh cong !" << endl;
             system("pause");
         } 
 		else 
@@ -157,9 +160,10 @@ void DoiMatKhau()
     if (!kt) 
 	{
 		SetColor(0, 12);
-        cout << "\t" << (char)26 << " " << " Sai ten tai khoan hoac mat khau cu !" << endl;
+        cout << "\t  " << (char)26 << " " << "Sai ten tai khoan hoac mat khau cu !" << endl;
         system("pause");
     }
+    SetColor(0, 7);
 }
 
 
@@ -170,44 +174,7 @@ int main()
     DocFileSP(DS_SanPham);
     vector<User> DS_User;
     DocFileUser(DS_User);
-//    Admin ad;
-//    User us;
-//    us.us1(DS_SanPham);
-//    string stt;
-//    cout << "Nhap STT san pham can xoa: ";
-//    cin >> stt;
-//    
-//    ad.ad3(DS_SanPham, stt);
-//	us.us1(DS_SanPham); // Xóa s?n ph?m theo STT và ki?m tra s? lu?ng
-//    
-//    
-//    string stt, hang, tensanpham;
-//    int soluong, gia;
-//    string NextSTT = ad.MaxSTT(DS_SanPham);
-// 	int nextstt =  stoi(NextSTT) + 1;
-//	NextSTT = to_string(nextstt);
-//    
-//    cout << "Nhap hang san xuat: ";
-//    getline(cin, hang);
-//    cout << "Nhap ten san pham: ";
-//    getline(cin, tensanpham);
-//    cout << "Nhap gia san pham: ";
-//    cin >> gia;
-//    cout << "Nhap so luong san pham: ";
-//    cin >> soluong;
-//
-//    SanPham newProduct(NextSTT, hang, tensanpham, gia, soluong);
-//
-//    ad.ad2(DS_SanPham, newProduct);
-//
-//    for (const SanPham &product : DS_SanPham) 
-//	{
-//        cout << product.getSTT() << " | " << product.getHang() << " | " << product.getTenSanPham() << " | " << product.getGia() << " | " << product.getSoLuong() << endl;
-//    }
 
-    
-
-    
     int luachon;
     hinhnen();
     do 
@@ -237,7 +204,6 @@ int main()
 		cout << "\t " << (char)26 << " " ;             
 		cin >> luachon;                                                    
                                                     
-
         switch (luachon) 
 		{
             case 1:
@@ -262,15 +228,10 @@ int main()
             	SetColor(0, 12);
                 cout << "\t" << (char)26 << " " << "Vui long nhap lai lua chon tu (1 - 4) !" << endl;
                 system("pause");
+                break;
                 SetColor(0, 7);
         }
-    } while (luachon != 4);
-
+    } while (luachon != 4);	
     return 0;
 }
-
-
-
-
-
 

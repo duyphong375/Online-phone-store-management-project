@@ -17,6 +17,7 @@ void DocFileUser(vector <User> &DS_User)
 		cerr << "Khong the mo file data.csv !" << endl;
 		return;
 	}
+	
 	string line;
 	getline(filein,line); // Bo qua dong tieu de
 	getline(filein, line); // Bo qua tai khoan Admin

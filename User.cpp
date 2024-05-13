@@ -1,6 +1,6 @@
 #pragma once
-#include <iostream>
 #include <bits/stdc++.h>
+#include <iostream>
 #include <iomanip>
 #include <algorithm>
 #include "SanPham.cpp"
@@ -14,8 +14,8 @@ class User
 	private:
 		string un;
 		string pw;
-		int TongSoLuong;
 		long long TongTien;
+		int TongSoLuong;
 	public:
 		User() {}
 		
@@ -60,11 +60,11 @@ class User
 			return TongSoLuong;
 		}
 		
-		int getTongTien() const
+		long long getTongTien() const
 		{
 			return TongTien;
 		}
-		
+		 
 		void Mua(vector<SanPham> &DS_SanPham, const string &stt, int soluong)
 		{
 		    bool kt = false;
@@ -83,7 +83,7 @@ class User
 						SetColor(0, 12);
 		                cout << "Da mua thanh cong " << soluong << " san pham " << sp.getTenSanPham() << endl;
 						SetColor(0, 7);
-		                GhiThongTinMuaHang(stt, sp.getTenSanPham(), soluong, sp.getGia());
+		                GhiThongTinMuaHang(stt, sp.getHang(), sp.getTenSanPham(), soluong, sp.getGia());
 		                UpdateFile(DS_SanPham);
 		            }
 		            else
@@ -105,31 +105,37 @@ class User
 		}
 
 		void GiamDan(vector<SanPham> &DS_SanPham)
-		{
-		    int n = DS_SanPham.size();
-		    for (int i = 0; i < n - 1; ++i) {
-		        int min = i;
-		        for (int j = i + 1; j < n; ++j) {
-		            if (DS_SanPham[j].getGia() > DS_SanPham[min].getGia()) {
-		                min = j;
-		            }
-		        }
-		        swap(DS_SanPham[min], DS_SanPham[i]);
-		    }
+		{   
+			int n = DS_SanPham.size();
+		    for(int i = 0; i < n - 1; i++)
+		    {
+		    	for(int j = i + 1; j < n; j++)
+		    	{
+		    		if(DS_SanPham[i].getGia() < DS_SanPham[j].getGia())
+		    		{
+		    			SanPham x = DS_SanPham[i];
+		    			DS_SanPham[i] = DS_SanPham[j];
+		    			DS_SanPham[j] = x;
+					}
+				}
+			}
 		}
 		
 		void TangDan(vector<SanPham> &DS_SanPham)
 		{
-		    int n = DS_SanPham.size();
-		    for (int i = 0; i < n - 1; ++i) {
-		        int max = i;
-		        for (int j = i + 1; j < n; ++j) {
-		            if (DS_SanPham[j].getGia() < DS_SanPham[max].getGia()) {
-		                max = j;
-		            }
-		        }
-		        swap(DS_SanPham[max], DS_SanPham[i]);
-		    }
+			int n = DS_SanPham.size();
+		    for(int i = 0; i < n - 1; i++)
+		    {
+		    	for(int j = i + 1; j < n; j++)
+		    	{
+		    		if(DS_SanPham[i].getGia() > DS_SanPham[j].getGia())
+		    		{
+		    			SanPham x = DS_SanPham[i];
+		    			DS_SanPham[i] = DS_SanPham[j];
+		    			DS_SanPham[j] = x;
+					}
+				}
+			}
 		}
 		
 		void us1(const vector<SanPham> &DS_SanPham)
@@ -239,13 +245,14 @@ class User
 		    do 
 			{	
 				SetColor(0, 10);
-		        cout << "\n\n--------------------------- SAP XEP SAN PHAM THEO GIA ---------------------------" << endl;
+		        cout << "\n\n--------------------------- SAP XEP SAN PHAM THEO GIA ---------------------------" << endl << endl;
+		        SetColor(0, 15);
 		        cout << "1. Sap xep theo gia tang dan" << endl;
 		        cout << "2. Sap xep theo gia giam dan" << endl;
 		        cout << "3. Tro ve MENU USER" << endl;
 		        SetColor(0, 15);
 	            cout << "Moi ban nhap lua chon: " << endl;
-	            cout << (char)16 << " " ;
+	            cout << (char)26 << " " ;
 	            cin >> chon;
 		
 		        switch (chon) 
@@ -279,46 +286,6 @@ class User
 		    }
 		}
 		
-		void us5()
-		{
-		    ifstream filein("thongtinmua.csv");
-		    if (!filein.is_open())
-		    {
-		        cerr << "Khong the mo file de doc!" << endl;
-		        return;
-		    }
-		
-		    int tongsoluong = 0;
-		    long long tongtien = 0;
-		    string line;
-		    while (getline(filein, line))
-		    {
-		        stringstream ss(line);
-		        string stt, tensp, soluong1, gia1;
-		
-		        getline(ss, stt, ',');
-		        getline(ss, tensp, ',');
-		        getline(ss, soluong1, ',');
-		        getline(ss, gia1, ',');
-		
-		        int soluong = stoi(soluong1);
-		        long long gia = stoll(gia1);
-		        
-		        tongsoluong += soluong;
-		        tongtien += gia * soluong;
-		    }
-			SetColor(0, 12);
-			cout << endl;
-		    cout << " --------------------- THONG KE --------------------- " << endl;
-		    SetColor(0, 15);
-		    cout << "So luong san pham da mua: " << tongsoluong << " cai " << endl;
-		    cout << "Tong tien phai thanh toan: " << tongtien << " vnd " << endl;
-		
-		    filein.close();
-		
-		    TongSoLuong = tongsoluong;
-		    TongTien = tongtien;
-		}
 };
 
 void MenuUser(User &us, vector<SanPham> DS_SanPham) 
@@ -332,23 +299,24 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 		cout << "	   \t\t | 2. TIM KIEM TEN SAN PHAM                | " << endl;
 		cout << "	   \t\t | 3. LOC DANH SACH SAN PHAM THEO HANG     | " << endl;
 		cout << "	   \t\t | 4. SAP XEP SAN PHAM THEO GIA TIEN       | " << endl; 
-		cout << "	   \t\t | 5. THONG KE TONG SAN PHAM VA TONG TIEN  | " << endl;
-		cout << "    \t\t\t | 6. EXIT                                 | " << endl;
+		cout << "    \t\t\t | 5. DANG XUAT                            | " << endl;
 		cout << "	   \t\t +-----------------------------------------+ " << endl;
 
         int luachon;
         SetColor(0, 15);
         cout << "\n\t\t\t Moi ban nhap lua chon: " << endl;
-        cout << "\t\t\t " << char(26) << " ";
+        cout << "\t\t\t " << (char)26 << " ";
         cin >> luachon;
 
         switch (luachon) 
 		{
             case 1: 
-			{
+			{	
+				system("cls");
                 us.us1(DS_SanPham);
-
-				while(kt)
+                
+                bool kt1 = true;
+				while(kt1)
 				{
 					SetColor(0, 10);
 					cout << endl;
@@ -379,8 +347,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2: 
 						{
-							system("cls");
-							MenuUser(us, DS_SanPham);
+							kt1 = false;
 							break;
 						}
 						default:
@@ -390,7 +357,14 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 							break;	
 						}
 					}
+					
+					if (!kt1) 
+					{
+            			break; 
+        			}
+					
 					SetColor(0, 10);
+					cout << "---------------------------------------------------------------------------------" << endl;
 					cout << "Ban co muon tiep tuc mua san pham ko ? " << endl;
 					cout << "1. Co " << endl;
 					cout << "2. Khong " << endl;
@@ -410,7 +384,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2:
 						{
-							kt = false;
+							kt1 = false;
 							break;
 						}
 						default:
@@ -425,14 +399,16 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
         	break;
         	case 2:
         	{
+        		system("cls");
         		string tentim;
         		SetColor(0, 15);
-        		cout << "Nhap ten san pham can tim (iPhone, OPPO, realme, Xiaomi, Samsung): ";
+        		cout << "\n\tNhap ten san pham can tim (iPhone, OPPO, realme, Xiaomi, Samsung): ";
         		cin.ignore();
         		getline(cin, tentim);
         		us.us2(DS_SanPham, tentim);
         		
-				while(kt)
+				bool kt1 = true;	
+				while(kt1)
 				{
 					SetColor(0, 10);
 					cout << endl;
@@ -463,8 +439,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2: 
 						{
-							system("cls");
-							MenuUser(us, DS_SanPham);
+							kt1 = false;
 							break;
 						}
 						default:
@@ -474,7 +449,14 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 							break;	
 						}
 					}
+					
+					if (!kt1) 
+					{
+            			break; 
+        			}
+        			
 					SetColor(0, 10);
+					cout << "---------------------------------------------------------------------------------" << endl;
 					cout << "Ban co muon tiep tuc mua san pham ko ? " << endl;
 					cout << "1. Co " << endl;
 					cout << "2. Khong " << endl;
@@ -494,7 +476,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2:
 						{
-							kt = false;
+							kt1 = false;
 							break;
 						}
 						default:
@@ -509,14 +491,16 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 			break;
 			case 3:
 			{
+				system("cls");
 				string tenhang;
 				SetColor(0, 15);
-				cout << "Nhap ten hang can tim (iPhone, OPPO, realme, Xiaomi, Samsung): ";
+				cout << "\n\tNhap ten hang can tim (iPhone, OPPO, realme, Xiaomi, Samsung): ";
 				cin.ignore();
 				getline(cin, tenhang);
 				us.us3(DS_SanPham, tenhang);
 				
-				while(kt)
+				bool kt1 = true;
+				while(kt1)
 				{
 					SetColor(0, 10);
 					cout << endl;
@@ -547,8 +531,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2: 
 						{
-							system("cls");
-							MenuUser(us, DS_SanPham);
+							kt1 = false;
 							break;
 						}
 						default:
@@ -558,7 +541,14 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 							break;	
 						}
 					}
+					
+					if (!kt1) 
+					{
+            			break; 
+        			}
+        			
 					SetColor(0, 10);
+					cout << "---------------------------------------------------------------------------------" << endl;
 					cout << "Ban co muon tiep tuc mua san pham ko ? " << endl;
 					cout << "1. Co " << endl;
 					cout << "2. Khong " << endl;
@@ -578,7 +568,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2:
 						{
-							kt = false;
+							kt1 = false;
 							break;
 						}
 						default:
@@ -593,8 +583,11 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 			break;
 			case 4:
 			{
+				system("cls");
 				us.us4(DS_SanPham);
-				while(kt)
+				
+				bool kt1 = true;
+				while(kt1)
 				{
 					SetColor(0, 10);
 					cout << endl;
@@ -625,8 +618,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2: 
 						{
-							system("cls");
-							MenuUser(us, DS_SanPham);
+							kt1 = false;
 							break;
 						}
 						default:
@@ -636,6 +628,12 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 							break;	
 						}
 					}
+					
+					if (!kt1) 
+					{
+            			break; 
+        			}
+					
 					SetColor(0, 10);
 					cout << "Ban co muon tiep tuc mua san pham ko ? " << endl;
 					cout << "1. Co " << endl;
@@ -656,7 +654,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						}
 						case 2:
 						{
-							kt = false;
+							kt1 = false;
 							break;
 						}
 						default:
@@ -666,35 +664,27 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 							break;
 						}
 					}
-				}
-				
+				}		
 			}
 			break;
 			case 5:
 			{
-				us.us5();
-				system("pause");
-			}
-			break;
-			case 6:
-			{
 				kt = false;
+				SetColor(0, 12);
+				cout << "	   \t\t BAN DA DANG XUAT THANH CONG ! " << endl;
+    			system("pause");
+    			SetColor(0, 7);
 				break;
 			}
 			break;
 			default:
 			{
 				SetColor(0, 12);
-				cout << "vui long nhap lai lua chon (1 - 6) ! " << endl;
+				cout << "vui long nhap lai lua chon (1 - 5) ! " << endl;
 				system("pause");
+				SetColor(0, 7);
 				break;
 			}
         }
-    } while (kt); 
+    } while (kt);
 }
-
-
-
-
-
-

@@ -32,6 +32,7 @@ class Admin
 		void setPW(string pw)
 		{
 			this->pw = pw;
+		
 		}
 		
 		string getUN() const
@@ -59,6 +60,7 @@ class Admin
 		    }
 		    if(!kt)
 		    {
+		    	SetColor(0, 12);
 		    	cout << "Khong tim thay ten nguoi dung !" << endl;
 			}
 		}
@@ -76,16 +78,55 @@ class Admin
 			return maxstt;
 		}
 		
+		void DanhSachBan()
+		{
+		    ifstream filein("thongtinmua.csv");
+		    if (!filein.is_open())
+		    {
+		        cerr << "Khong the mo file thongtinmua.csv!" << endl;
+		        return;
+		    }
+			SetColor(0, 10);
+		    cout << "\n\n--------------------------- DANH SACH SAN PHAM DA BAN ---------------------------" << endl;
+		    cout << endl;
+		    SetColor(0, 15);
+		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+		    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << endl;
+		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+		
+		    string line;
+		    while (getline(filein, line))
+		    {
+		        stringstream ss(line);
+		        string stt, hang, tensp, soluong, gia;
+		
+		        getline(ss, stt, ',');
+		        getline(ss, hang, ',');
+		        getline(ss, tensp, ',');
+		        getline(ss, soluong, ',');
+		        getline(ss, gia, '\n');
+				SetColor(0, 15);
+		        cout << "|" << setw(5) << stt << setw(4) << "|" << setw(9) << hang << setw(4) << "|" << setw(26) << tensp << setw(4) << "|" << setw(10) << soluong << setw(4) << "|" << setw(10) << gia << setw(4) << "|" << endl;
+		    }
+		    SetColor(0, 15);
+		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+		
+		    filein.close();
+		}
+		
 		void ad1(const vector<User> &DS_User)
 		{
+			SetColor(0, 10);
 			cout << "\n\n ------------- DANH SACH CAC TAI KHOAN -------------" << endl;
 			cout << endl;
+			SetColor(0, 15);
 			cout << "\t+---------------------+---------------------+" << endl;
 			cout << "\t|" << setw(15) << "Tai Khoan " << setw(7) << "|" << setw(15) << "Mat Khau " << setw(7) << "|" << endl;
 			cout << "\t+---------------------+---------------------+" << endl;
 			for(const User &us : DS_User)
 			{
-				cout << "\t|" << setw(15) << us.getUN() << setw(7) << "|" << setw(15) << us.getPW() << setw(7) << "|" << endl;
+				SetColor(0, 15);
+				cout << "\t|" << setw(20) << us.getUN() << setw(7) << "|" << setw(20) << us.getPW() << setw(7) << "|" << endl;
 				cout << "\t+---------------------+---------------------+" << endl;
 			}
 		}
@@ -106,20 +147,30 @@ class Admin
 			{
 				DS_SanPham.push_back(spnew);
 			}
+			
 			UpdateFile(DS_SanPham);
+			SetColor(0, 12);
+			cout << "Them san pham thanh cong !" << endl;
+			system("pause");
+			SetColor(0, 10);
+			cout << "\n\n--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
+		    cout << endl;
+		    SetColor(0, 15);
+		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+		    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << endl;
+		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
 			for (const SanPham &sp : DS_SanPham)
 		    {
+		    	SetColor(0, 15);
 		        cout << "|" << setw(5) << sp.getSTT() << setw(4) << "|" << setw(9) << sp.getHang() << setw(4) << "|" << setw(26) << sp.getTenSanPham() << setw(4) << "|" << setw(10) << sp.getGia() << setw(4) << "|" << setw(10) << sp.getSoLuong() << setw(4) << "|" << endl;
 		        cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
-		        kt = true;
 		    }
 		}
 		
 		void ad3(vector<SanPham> &DS_SanPham, const string &stt) 
 		{
 		    bool kt = false; 
-		    
-		    for (int i = 0; i < DS_SanPham.size(); ++i) 
+		    for (int i = 0; i < DS_SanPham.size(); i++) 
 		    {
 		        if (DS_SanPham[i].getSTT() == stt && DS_SanPham[i].getSoLuong() == 0) 
 		        {
@@ -131,7 +182,8 @@ class Admin
 		    
 		    if (kt) 
 		    {
-		        cout << "Da xoa thanh cong!" << endl;
+		    	SetColor(0, 12);
+		        cout << "Da xoa thanh cong !" << endl;
 		        
 		        int newSTT = 1;
 		        
@@ -141,10 +193,25 @@ class Admin
 		        }
 		        
 		        UpdateFile(DS_SanPham);
+		        SetColor(0, 10);
+		        system("pause");
+				cout << "--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
+			    cout << endl;
+			    SetColor(0, 15);
+			    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+			    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << endl;
+			    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+				for (const SanPham &sp : DS_SanPham)
+			    {
+			    	SetColor(0, 15);
+			        cout << "|" << setw(5) << sp.getSTT() << setw(4) << "|" << setw(9) << sp.getHang() << setw(4) << "|" << setw(26) << sp.getTenSanPham() << setw(4) << "|" << setw(10) << sp.getGia() << setw(4) << "|" << setw(10) << sp.getSoLuong() << setw(4) << "|" << endl;
+			        cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+			    }
 		    } 
 		    else 
 		    {
-		        cout << "Khong tim thay hoac so luong khong bang 0!" << endl;
+		    	SetColor(0, 12);
+		        cout << "Khong tim thay hoac so luong khong bang 0 !" << endl;
 		    }
 		}
 		
@@ -163,14 +230,70 @@ class Admin
 			
 			if(kt)
 			{
-				cout << "Da chinh sua thanh cong gia san pham !" << endl;	
+				SetColor(0, 12);
+				cout << "Da chinh sua thanh cong gia san pham !" << endl;
+				UpdateFile(DS_SanPham);
+				system("pause");
+				SetColor(0, 10);
+				cout << "\n\n--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
+			    cout << endl;
+			    SetColor(0, 15);
+			    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+			    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << endl;
+			    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+				for (const SanPham &sp : DS_SanPham)
+			    {
+			    	SetColor(0, 15);
+			        cout << "|" << setw(5) << sp.getSTT() << setw(4) << "|" << setw(9) << sp.getHang() << setw(4) << "|" << setw(26) << sp.getTenSanPham() << setw(4) << "|" << setw(10) << sp.getGia() << setw(4) << "|" << setw(10) << sp.getSoLuong() << setw(4) << "|" << endl;
+			        cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+			    }	
 			}
 			else
 			{
+				SetColor(0, 12);
 				cout << "Khong tim thay san pham !" << endl;
 			}
 		}
+	
+		void ad5(vector<SanPham> &DS_SanPham)
+		{
+			ifstream filein("thongtinmua.csv");
+			if (!filein.is_open())
+			{
+			    cerr << "Khong the mo file de doc!" << endl;
+			    return;
+			}
+			
+			int tongdonhang = 0;
+			long long tongdoanhthu = 0;
+			string line;
+			while (getline(filein, line))
+			{
+			    stringstream ss(line);
+			    string stt, tensp, hang, soluong1, gia1;
+			
+			    getline(ss, stt, ',');
+			    getline(ss, tensp, ',');
+			    getline(ss, hang, ',');
+			    getline(ss, soluong1, ',');
+			    getline(ss, gia1, '\n');
+			
+			    int soluong = stoi(soluong1);
+			    long long gia = stoll(gia1);
 
+			    tongdonhang += soluong;
+			    tongdoanhthu += gia * soluong; 
+			}
+			    
+			DanhSachBan();
+			cout << endl;
+			SetColor(0, 10);
+			cout << "---------------------------------------------------------------------------------" << endl;
+			cout << (char)26 << " " << "Tong so luong da ban: " << tongdonhang << " cai dien thoai " << endl;
+			cout << (char)26 << " " << "Tong doanh thu cua cua hang: " << tongdoanhthu << " vnd " << endl;
+				
+			filein.close();
+		}
 };
 
 void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &DS_User)
@@ -178,15 +301,18 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 	bool kt = true;
 	do {
 		system("cls");
-		cout << "\n\n\t\t\t +------------- MENU ADMIN -------------+ " << endl;
-		cout << "	   \t\t | 1. DANH SACH THONG TIN NGUOI DUNG    | " << endl;
-		cout << "	   \t\t | 2. THEM SAN PHAM                     | " << endl;
-		cout << "	   \t\t | 3. XOA SAN PHAM                      | " << endl;
-		cout << "	   \t\t | 4. CHINH SUA SAN PHAM                | " << endl;
-		cout << "	   \t\t | 5. EXIT                              | " << endl;
-		cout << "	   \t\t +--------------------------------------+ " << endl;
+		SetColor(0, 11);
+		cout << "\n\n\t\t\t +------------- MENU ADMIN ----------------+ " << endl;
+		cout << "	   \t\t | 1. DANH SACH THONG TIN NGUOI DUNG       | " << endl;
+		cout << "	   \t\t | 2. THEM SAN PHAM                        | " << endl;
+		cout << "	   \t\t | 3. XOA SAN PHAM                         | " << endl;
+		cout << "	   \t\t | 4. CHINH SUA SAN PHAM                   | " << endl;
+		cout << "	   \t\t | 5. THONG KE TONG DOANH THU LOI NHUAN    | " << endl;
+		cout << "	   \t\t | 6. DANG XUAT                            | " << endl;
+		cout << "	   \t\t +-----------------------------------------+ " << endl;
 		
 		int luachon;
+		SetColor(0, 15);
 		cout << "\n\t\t\t Moi ban nhap lua chon: " << endl;
         cout << "\t\t\t " << char(26) << " ";
         cin >> luachon;
@@ -195,82 +321,97 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 		{
 			case 1:
 			{
-				ad.ad1(DS_User);
-				
-				while(kt)
-				{
-					cout << endl;
-					cout << "---------------------------------------------" << endl;
-					cout << "1. Xoa tai khoan " << endl;                      
-	                cout << "2. Tro ve MENU Admin " << endl;
-	                int chon;
-	                cout << "Moi ban nhap lua chon: " << endl;
-	                cout << (char)26 << " " ;
-	                cin >> chon;
-	                
-	                switch(chon)
-	                {
-	                	case 1: 
-	                	{
-		                	string tendangnhap;
-						    cout << "Nhap ten dang nhap tai khoan can xoa: ";
-						    cin.ignore();
-						    getline(cin, tendangnhap);
-							ad.XoaTK(DS_User, tendangnhap);
-							break;
-						}
-						case 2: 
-						{
-							system("cls");
-							MenuAdmin(ad, us, DS_SanPham, DS_User);
-							break;
-						}
-						default:
-						{
-							cout << "Vui long nhap lai lua chon ! " << endl;
-							break;	
-						}
-					}
-					cout << "Ban co muon tiep tuc xoa tai khoan khong ? " << endl;
-					cout << "1. Co " << endl;
-					cout << "2. Khong " << endl;
-					cout << "Moi ban nhap lua chon: " << endl;
-					cout << (char)26 << " " ;
-					int tieptuc;
-					cin >> tieptuc;
-					
-					switch(tieptuc)
+			    ad.ad1(DS_User);
+			
+			    bool kt1 = true;
+			    while (kt1)
+			    {
+			        cout << endl;
+			        SetColor(0, 10);
+			        cout << "---------------------------------------------" << endl;
+			        cout << "1. Xoa tai khoan " << endl;
+			        cout << "2. Tro ve MENU ADMIN " << endl;
+			        int chon;
+			        SetColor(0, 15);
+			        cout << "Moi ban nhap lua chon: " << endl;
+			        cout << (char)26 << " ";
+			        cin >> chon;
+			
+			        switch (chon)
+			        {
+			            case 1:
+			            {
+			                string tendangnhap;
+			                SetColor(0, 15);
+			                cout << "Nhap ten dang nhap tai khoan can xoa: ";
+			                cin.ignore(); 
+			                getline(cin, tendangnhap);
+			                ad.XoaTK(DS_User, tendangnhap);
+			                break;
+			            }
+			            case 2:
+			            {
+			                kt1 = false;
+			                break;
+			            }
+			            default:
+			            {
+			            	SetColor(0, 12);
+			                cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+			                break;
+			            }
+			        }
+			        
+			        if (!kt1) 
 					{
-						case 1:
-						{
-							system("cls");
-							ad.ad1(DS_User);
-							break;
-						}
-						case 2:
-						{
-							kt = false;
-							break;
-						}
-						default:
-						{
-							cout << "Vui long nhap lai lua chon ! " << endl;
-							break;
-						}
-					}
-				}
+            			break; 
+        			}
+        			
+					SetColor(0, 10);
+			        cout << "Ban co muon tiep tuc xoa tai khoan khong ? " << endl;
+			        cout << "1. Co " << endl;
+			        cout << "2. Khong " << endl;
+			        SetColor(0, 15);
+			        cout << "Moi ban nhap lua chon: " << endl;
+			        cout << (char)26 << " ";
+			        int tieptuc;
+			        cin >> tieptuc;
+			
+			        switch (tieptuc)
+			        {
+			            case 1:
+			            {
+			                system("cls");
+			                ad.ad1(DS_User);
+			                break;
+			            }
+			            case 2:
+			            {
+			                kt1 = false;
+			                break;
+			            }
+			            default:
+			            {
+			            	SetColor(0, 12);
+			                cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+			                break;
+			            }
+			        }
+			    }
+			    break;
 			}
 			break;
 			case 2:
 			{
-				us.us1(DS_SanPham);
-				cout << "---------------------------------------------------------------------------------" << endl;
-				string stt, hang, tensp;
-				int gia, soluong;
-				string NextSTT = ad.MaxSTT(DS_SanPham);
-				int nextstt =  stoi(NextSTT) + 1;
-				NextSTT = to_string(nextstt);
-			    
+			    us.us1(DS_SanPham);
+			    SetColor(0, 10);
+			    cout << "---------------------------------------------------------------------------------" << endl;
+			    string stt, hang, tensp;
+			    int gia, soluong;
+			    string NextSTT = ad.MaxSTT(DS_SanPham);
+			    int nextstt = stoi(NextSTT) + 1;
+			    NextSTT = to_string(nextstt);
+				SetColor(0, 15);
 			    cout << "Nhap hang san xuat: ";
 			    cin.ignore();
 			    getline(cin, hang);
@@ -282,74 +423,105 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			    cin >> soluong;
 			
 			    SanPham spnew(NextSTT, hang, tensp, gia, soluong);
+			    system("cls");
+			    ad.ad2(DS_SanPham, spnew); 
 			
-			    ad.ad2(DS_SanPham, spnew);
-			    
-				cout << "Ban co muon tiep tuc them san pham khong ? " << endl;
-				cout << "1. Co " << endl;
-				cout << "2. Khong " << endl;
-				cout << "Moi ban nhap lua chon: " << endl;
-				cout << (char)26 << " " ;
-				int tieptuc;
-				cin >> tieptuc;
-					
-				switch(tieptuc)
+			    bool kt1 = true; 
+			    while (kt1) 
 				{
-					case 1:
+					SetColor(0, 10);
+					cout << "---------------------------------------------------------------------------------" << endl;
+			        cout << "Ban co muon tiep tuc them san pham khong ? " << endl;
+			        cout << "1. Co " << endl;
+			        cout << "2. Khong " << endl;
+			        SetColor(0, 15);
+			        cout << "Moi ban nhap lua chon: ";
+			        int tieptuc;
+			        cin >> tieptuc;
+			
+			        switch (tieptuc) 
 					{
-						system("cls");
-						us.us1(DS_SanPham);
-						ad.ad2(DS_SanPham, spnew);
-						break;
-					}
-					case 2:
-					{
-						kt = false;
-						break;
-					}
-					default:
-					{
-						cout << "Vui long nhap lai lua chon ! " << endl;
-						break;
-					}
-				}
+			            case 1:
+			            {
+			            	SetColor(0, 15);
+			                cout << "Nhap hang san xuat: ";
+			                cin.ignore();
+			                getline(cin, hang);
+			                cout << "Nhap ten san pham: ";
+			                getline(cin, tensp);
+			                cout << "Nhap gia san pham: ";
+			                cin >> gia;
+			                cout << "Nhap so luong san pham can them: ";
+			                cin >> soluong;
+			
+			                spnew = SanPham(NextSTT, hang, tensp, gia, soluong);
+			                ad.ad2(DS_SanPham, spnew);
+			                break;
+			        	}
+			            case 2:
+			            {
+			                kt1 = false;
+			                break;
+			            }
+			            default:
+			            {
+			            	SetColor(0, 12);
+			                cout << "Vui long nhap lai lua chon (1 - 2) ! " << endl;
+			                break;
+			            }
+			        }
+			    }
+			    break; 
 			}
 			break;
 			case 3:
 			{
 				us.us1(DS_SanPham);
 				string stt;
+				SetColor(0, 10);
+				cout << "---------------------------------------------------------------------------------" << endl;
+				SetColor(0, 15);
 				cout << "Nhap STT san pham can xoa: ";
 				cin.ignore();
 				getline(cin, stt);
 				ad.ad3(DS_SanPham, stt);
 				
-				cout << "Ban co muon tiep tuc xoa san pham khong ? " << endl;
-				cout << "1. Co " << endl;
-				cout << "2. Khong " << endl;
-				cout << "Moi ban nhap lua chon: " << endl;
-				cout << (char)26 << " " ;
-				int tieptuc;
-				cin >> tieptuc;
-					
-				switch(tieptuc)
+				bool kt1 = true; 
+			    while (kt1)
 				{
-					case 1:
+					SetColor(0, 10);
+					cout << "---------------------------------------------------------------------------------" << endl;
+					cout << "Ban co muon tiep tuc xoa san pham khong ? " << endl;
+					cout << "1. Co " << endl;
+					cout << "2. Khong " << endl;
+					SetColor(0, 15);
+					cout << "Moi ban nhap lua chon: " << endl;
+					cout << (char)26 << " " ;
+					int tieptuc;
+					cin >> tieptuc;
+					
+					switch(tieptuc)
 					{
-						system("cls");
-						us.us1(DS_SanPham);
-						ad.ad3(DS_SanPham, stt);
-						break;
-					}
-					case 2:
-					{
-						kt = false;
-						break;
-					}
-					default:
-					{
-						cout << "Vui long nhap lai lua chon ! " << endl;
-						break;
+						case 1:
+						{
+							SetColor(0, 15);
+			                cout << "Nhap STT san pham can xoa: ";
+			                cin.ignore();
+			                getline(cin, stt);
+							ad.ad3(DS_SanPham, stt);
+							break;
+						}
+						case 2:
+						{
+							kt1 = false;
+							break;
+						}
+						default:
+						{
+							SetColor(0, 12);
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							break;
+						}
 					}
 				}
 			}
@@ -359,85 +531,84 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 				us.us1(DS_SanPham);
 				string stt;
 				int gia;
+				SetColor(0, 10);
+				cout << "---------------------------------------------------------------------------------" << endl;
+				SetColor(0, 15);
 				cout << "Nhap STT san pham can chinh sua: ";
 				cin.ignore();
 				getline(cin ,stt);
 				cout << "Nhap gia can chinh sua cho san pham: ";
 				cin >> gia;
-				ad.ad3(DS_SanPham, stt);
+				ad.ad4(DS_SanPham, stt, gia);
 				
-				cout << "Ban co muon tiep tuc xoa san pham khong ? " << endl;
-				cout << "1. Co " << endl;
-				cout << "2. Khong " << endl;
-				cout << "Moi ban nhap lua chon: " << endl;
-				cout << (char)26 << " " ;
-				int tieptuc;
-				cin >> tieptuc;
-					
-				switch(tieptuc)
+				bool kt1 = true; 
+			    while (kt1)
 				{
-					case 1:
+					SetColor(0, 10);
+					cout << "---------------------------------------------------------------------------------" << endl;
+					cout << "Ban co muon tiep tuc chinh sua san pham khong ? " << endl;
+					cout << "1. Co " << endl;
+					cout << "2. Khong " << endl;
+					SetColor(0, 15);
+					cout << "Moi ban nhap lua chon: " << endl;
+					cout << (char)26 << " " ;
+					int tieptuc;
+					cin >> tieptuc;
+						
+					switch(tieptuc)
 					{
-						system("cls");
-						us.us1(DS_SanPham);
-						ad.ad4(DS_SanPham, stt);
-						break;
-					}
-					case 2:
-					{
-						kt = false;
-						break;
-					}
-					default:
-					{
-						cout << "Vui long nhap lai lua chon ! " << endl;
-						break;
+						case 1:
+						{
+							SetColor(0, 15);
+							cout << "---------------------------------------------------------------------------------" << endl;
+							cout << "Nhap STT san pham can chinh sua: ";
+							cin.ignore();
+							getline(cin ,stt);
+							cout << "Nhap gia can chinh sua cho san pham: ";
+							cin >> gia;
+							ad.ad4(DS_SanPham, stt, gia);
+							break;
+						}
+						case 2:
+						{
+							kt1 = false;
+							break;
+						}
+						default:
+						{
+							SetColor(0, 12);
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							break;
+						}
 					}
 				}
  			}
+ 			break;
+ 			case 5:
+			{
+			    ad.ad5(DS_SanPham);
+			    system("pause");
+			    break;
+			}
+			break;
+			case 6:
+			{
+				kt = false;
+				SetColor(0, 12);
+				cout << "	   \t\t BAN DA DANG XUAT THANH CONG ! " << endl;
+				SetColor(0, 7);
+    			system("pause");
+				break;
+			}
+			break;
+			default:
+			{
+				SetColor(0, 12);
+				cout << "vui long nhap lai lua chon (1 - 6) ! " << endl;
+				SetColor(0, 7);
+				system("pause");
+				break;
+			}
+		} 
 	} while(kt);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

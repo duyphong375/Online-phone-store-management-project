@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <iomanip>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -43,7 +44,7 @@ void DocFileSP(vector<SanPham> &DS_SanPham)
 	filein.close();
 }
 
-void GhiThongTinMuaHang(const string &stt, string tensp, int soluong, long long gia)
+void GhiThongTinMuaHang(const string &stt, string hang, string tensp, int soluong, long long gia)
 {
     ofstream fileout("thongtinmua.csv", ios::app);
     if (!fileout.is_open())
@@ -52,10 +53,10 @@ void GhiThongTinMuaHang(const string &stt, string tensp, int soluong, long long 
         return;
     }
 
-    fileout << stt << "," << tensp << "," << soluong << "," << gia << endl;
+    fileout << stt << "," << hang << "," << tensp << "," << soluong << "," << gia << endl;
     fileout.close();
 }
- 
+
 void UpdateFile(const vector<SanPham> &DS_SanPham)
 {
     ofstream fileout("cuahangcpnew.csv", ios::out);
