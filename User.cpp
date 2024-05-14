@@ -318,6 +318,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
                 bool kt1 = true;
 				while(kt1)
 				{
+					a:
 					SetColor(0, 10);
 					cout << endl;
 	                cout << "---------------------------------------------------------------------------------" << endl;
@@ -353,7 +354,9 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							goto a;
+							SetColor(0, 7);
 							break;	
 						}
 					}
@@ -390,7 +393,8 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							SetColor(0, 7);
 							break;
 						}
 					}
@@ -410,6 +414,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 				bool kt1 = true;	
 				while(kt1)
 				{
+					b:
 					SetColor(0, 10);
 					cout << endl;
 	                cout << "---------------------------------------------------------------------------------" << endl;
@@ -445,7 +450,9 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2) ! " << endl;
+							goto b;
+							SetColor(0, 7);
 							break;	
 						}
 					}
@@ -482,7 +489,8 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							SetColor(0, 7);
 							break;
 						}
 					}
@@ -502,6 +510,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 				bool kt1 = true;
 				while(kt1)
 				{
+					c:
 					SetColor(0, 10);
 					cout << endl;
 	                cout << "---------------------------------------------------------------------------------" << endl;
@@ -538,6 +547,8 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon ! " << endl;
+							goto c;
+							SetColor(0, 7);
 							break;	
 						}
 					}
@@ -574,7 +585,8 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							SetColor(0, 7);
 							break;
 						}
 					}
@@ -589,6 +601,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 				bool kt1 = true;
 				while(kt1)
 				{
+					d:
 					SetColor(0, 10);
 					cout << endl;
 	                cout << "---------------------------------------------------------------------------------" << endl;
@@ -624,7 +637,9 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							goto d;
+							SetColor(0, 7);
 							break;	
 						}
 					}
@@ -660,7 +675,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
 							break;
 						}
 					}
@@ -687,4 +702,5 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 			}
         }
     } while (kt);
+    SetColor(0, 7);
 }

@@ -3,6 +3,7 @@
 #include <ctime>
 #include <windows.h>
 
+
 using namespace std;
 
 void SetColor(int mau_nen, int mau_chu)
@@ -17,7 +18,8 @@ void SetRandomColor()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     srand(time(NULL));
-    int color = rand() % 15 + 1; // Tao mau tu 1 den 15
+    int color = rand() % 15 + 1; 
+    
     SetConsoleTextAttribute(hConsole, color);
 }
 
@@ -83,7 +85,6 @@ void hinhnen1()
 	cout << "\t   ***********   ******              ******         *****  *****   ***********   *****  *****   ***********        ***********   *****  *****   ***********   ******             " << endl;
 }
 
-
 void ve()
 {
 	GoTo(88, 22);
@@ -127,4 +128,3 @@ void ve()
 	GoTo(88, 41);
 	cout << "  ************************    " << endl; 
 }
-

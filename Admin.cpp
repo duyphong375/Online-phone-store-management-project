@@ -126,7 +126,7 @@ class Admin
 			for(const User &us : DS_User)
 			{
 				SetColor(0, 15);
-				cout << "\t|" << setw(20) << us.getUN() << setw(7) << "|" << setw(20) << us.getPW() << setw(7) << "|" << endl;
+				cout << "\t|" << setw(15) << us.getUN() << setw(7) << "|" << setw(15) << us.getPW() << setw(7) << "|" << endl;
 				cout << "\t+---------------------+---------------------+" << endl;
 			}
 		}
@@ -151,6 +151,7 @@ class Admin
 			UpdateFile(DS_SanPham);
 			SetColor(0, 12);
 			cout << "Them san pham thanh cong !" << endl;
+			SetColor(0, 7);
 			system("pause");
 			SetColor(0, 10);
 			cout << "\n\n--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
@@ -184,6 +185,7 @@ class Admin
 		    {
 		    	SetColor(0, 12);
 		        cout << "Da xoa thanh cong !" << endl;
+		        SetColor(0, 7);
 		        
 		        int newSTT = 1;
 		        
@@ -212,6 +214,7 @@ class Admin
 		    {
 		    	SetColor(0, 12);
 		        cout << "Khong tim thay hoac so luong khong bang 0 !" << endl;
+		        SetColor(0, 7);
 		    }
 		}
 		
@@ -233,6 +236,7 @@ class Admin
 				SetColor(0, 12);
 				cout << "Da chinh sua thanh cong gia san pham !" << endl;
 				UpdateFile(DS_SanPham);
+				SetColor(0, 7);
 				system("pause");
 				SetColor(0, 10);
 				cout << "\n\n--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
@@ -252,6 +256,7 @@ class Admin
 			{
 				SetColor(0, 12);
 				cout << "Khong tim thay san pham !" << endl;
+				SetColor(0, 7);
 			}
 		}
 	
@@ -326,6 +331,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			    bool kt1 = true;
 			    while (kt1)
 			    {
+			    	a:
 			        cout << endl;
 			        SetColor(0, 10);
 			        cout << "---------------------------------------------" << endl;
@@ -358,6 +364,8 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			            {
 			            	SetColor(0, 12);
 			                cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+			                goto a;
+			                SetColor(0, 7);
 			                break;
 			            }
 			        }
@@ -394,6 +402,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			            {
 			            	SetColor(0, 12);
 			                cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+			                SetColor(0, 7);
 			                break;
 			            }
 			        }
@@ -429,6 +438,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			    bool kt1 = true; 
 			    while (kt1) 
 				{
+					b:
 					SetColor(0, 10);
 					cout << "---------------------------------------------------------------------------------" << endl;
 			        cout << "Ban co muon tiep tuc them san pham khong ? " << endl;
@@ -467,6 +477,8 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			            {
 			            	SetColor(0, 12);
 			                cout << "Vui long nhap lai lua chon (1 - 2) ! " << endl;
+			                goto b;
+			                SetColor(0, 7);
 			                break;
 			            }
 			        }
@@ -489,6 +501,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 				bool kt1 = true; 
 			    while (kt1)
 				{
+					c:
 					SetColor(0, 10);
 					cout << "---------------------------------------------------------------------------------" << endl;
 					cout << "Ban co muon tiep tuc xoa san pham khong ? " << endl;
@@ -520,6 +533,8 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							goto c;
+							SetColor(0, 7);
 							break;
 						}
 					}
@@ -544,6 +559,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 				bool kt1 = true; 
 			    while (kt1)
 				{
+					d:
 					SetColor(0, 10);
 					cout << "---------------------------------------------------------------------------------" << endl;
 					cout << "Ban co muon tiep tuc chinh sua san pham khong ? " << endl;
@@ -578,6 +594,8 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							goto d;
+							SetColor(0, 7);
 							break;
 						}
 					}

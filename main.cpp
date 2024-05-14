@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void DangKi(vector<SanPham> &DS_SanPham) 
+void DangKi() 
 {
 	SetColor(0, 11);
     cout << "\t ---------- MOI BAN DANG KI TAI KHOAN ---------" << endl;
@@ -32,10 +32,11 @@ void DangKi(vector<SanPham> &DS_SanPham)
     fileout << un << "," << pw << endl;
     SetColor(0, 11);
     cout << "\t " << (char)26 << " " << "Da tao tai khoan thanh cong ! " << endl;
+    SetColor(0, 7);
     system("pause");
     fileout.close();
-    SetColor(0, 7);
 }
+
 
 void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User) 
 {
@@ -78,6 +79,7 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
 	{
 		SetColor(0, 12);
         cout << "\t " << (char)26 << " " << "Dang nhap thanh cong !" << endl;
+        SetColor(0, 7);
         system("pause");
         if (un == "AdminCP" && pw == "AdminCP") 
 		{
@@ -97,15 +99,16 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
 		SetColor(0, 12);
         cout << "\t " << (char)26 << " " << "Dang nhap that bai !" << endl;
         cout << "\t " << (char)26 << " " << "Moi ban dang nhap lai !" << endl;
+        SetColor(0, 7);
         system("pause");
     }
-    SetColor(0, 7);
 }
+
 
 void DoiMatKhau() 
 {
 	SetColor(0, 11);
-    cout << "\t ------------ MOI BAN DOI MAT KHAU ------------ " << endl;
+    cout << "\t ------------ MOI BAN DOI MAT KHAU ------------" << endl;
     string un, pw;
     SetColor(0, 15);
     cout << "\t " << (char)26 << " " << "Ten dang nhap: ";
@@ -126,7 +129,7 @@ void DoiMatKhau()
 
     string line;
     bool kt = false;
-    while (getline(filein, line)) 
+    while (getline(filein, line))
 	{
         string uname, pword;
         stringstream ss(line);
@@ -143,6 +146,7 @@ void DoiMatKhau()
             fileout << un << "," << new_pw << endl;
             SetColor(0, 11);
             cout << "\t " << (char)26 << " " << "Doi mat khau thanh cong !" << endl;
+            SetColor(0, 7);
             system("pause");
         } 
 		else 
@@ -161,11 +165,10 @@ void DoiMatKhau()
 	{
 		SetColor(0, 12);
         cout << "\t  " << (char)26 << " " << "Sai ten tai khoan hoac mat khau cu !" << endl;
+        SetColor(0, 7);
         system("pause");
     }
-    SetColor(0, 7);
 }
-
 
 
 int main() 
@@ -186,17 +189,17 @@ int main()
 		ve();
 		SetColor(0, 11);
 		GoTo(0, 22);
-		cout << "\t +--------- QUAN LI CUA HANG ---------+" << endl;
+		cout << "\t +------------ QUAN LI CUA HANG --------------+" << endl;
 		GoTo(0, 23);                               
-        cout << "\t | 1. DANG KI                         |" << endl;
+        cout << "\t | 1. DANG KI                                 |" << endl;
 		GoTo(0, 24);                        
-        cout << "\t | 2. DANG NHAP                       |" << endl;
+        cout << "\t | 2. DANG NHAP                               |" << endl;
 		GoTo(0, 25);                  
-        cout << "\t | 3. DOI MAT KHAU                    |" << endl;  
+        cout << "\t | 3. DOI MAT KHAU                            |" << endl;  
 		GoTo(0, 26);                                                                 
-        cout << "\t | 4. EXIT                            |" << endl; 
+        cout << "\t | 4. EXIT                                    |" << endl; 
 		GoTo(0, 27);             
-        cout << "\t +------------------------------------+" << endl;  
+        cout << "\t +--------------------------------------------+" << endl;  
         GoTo(0, 28);
 		SetColor(0,15);           
 		cout << "\t Moi ban nhap lua chon: "                << endl; 
@@ -207,31 +210,41 @@ int main()
         switch (luachon) 
 		{
             case 1:
-                DangKi(DS_SanPham);
+            {
+            	DangKi();
                 system("cls");
-                break;
+                break;	
+			}
             case 2:
-                DangNhap(DS_SanPham, DS_User);
+            {
+            	DangNhap(DS_SanPham, DS_User);
                 system("cls");
                 break;
+			}
             case 3:
-                DoiMatKhau(); 
+            {
+            	DoiMatKhau();
                 system("cls");
                 break;
+			}
             case 4:
+            {
             	SetColor(0, 11);
-                cout << "\t CHUC BAN CO MOT NGAY TOT LANH " << (char)3 << (char)3 << (char)3 <<  endl;
-                system("pause");
+                cout << "\t CHUC BAN CO MOT NGAY TOT LANH " << (char)3 << (char)3 << (char)3 << endl;
                 SetColor(0, 7);
+                system("pause");
                 break;
+			}
             default:
+            {
             	SetColor(0, 12);
                 cout << "\t" << (char)26 << " " << "Vui long nhap lai lua chon tu (1 - 4) !" << endl;
+                SetColor(0, 7);
                 system("pause");
                 break;
-                SetColor(0, 7);
+			}
         }
     } while (luachon != 4);	
+    
     return 0;
 }
-
