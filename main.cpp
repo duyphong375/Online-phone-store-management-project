@@ -229,8 +229,8 @@ int main()
 			}
             case 4:
             {
-            	SetColor(0, 11);
-                cout << "\t CHUC BAN CO MOT NGAY TOT LANH " << (char)3 << (char)3 << (char)3 << endl;
+//                cout << "\t CHUC BAN CO MOT NGAY TOT LANH " << (char)3 << (char)3 << (char)3 << endl;
+				hinhnen2();
                 SetColor(0, 7);
                 system("pause");
                 break;
