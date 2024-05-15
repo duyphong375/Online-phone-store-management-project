@@ -687,8 +687,8 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 				kt = false;
 				SetColor(0, 12);
 				cout << "	   \t\t BAN DA DANG XUAT THANH CONG ! " << endl;
+				SetColor(0, 7);
     			system("pause");
-    			SetColor(0, 7);
 				break;
 			}
 			break;
