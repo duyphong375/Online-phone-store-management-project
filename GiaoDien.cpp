@@ -2,8 +2,6 @@
 #include <iostream>
 #include <ctime>
 #include <windows.h>
-
-
 using namespace std;
 
 void SetColor(int mau_nen, int mau_chu)
@@ -131,20 +129,22 @@ void ve()
 
 void hinhnen2()
 {
-	while(true)
+	int i = 0;
+	while(i < 30)
 	{
 		system("cls");
 		SetRandomColor();
 		cout << "\n\n" ;
 		cout << "\t  oooooooooo   ooooooooooo   ooooooooooo   oooooooooo           oooooooooo    oooooo     ooooooo   ooooooooooo    " << (char)3 << endl;
-		cout << "\t  o        o   o         o   o         o   o         o          o        o     ooooo   ooooo       o   ooooooo    " << (char)3 << endl;
+		cout << "\t  o        o   o         o   o         o   o         o          o        o      ooooo   ooooo      o   ooooooo    " << (char)3 << endl;
 		cout << "\t  o       ooo  o  ooooo  o   o  ooooo  o   o  oooo    o         o    ooooo        oooo oooo        o   o          " << (char)3 << endl;
 		cout << "\t  o            o  o   o  o   o  o   o  o   o  o   o   o         o   o               ooooo          o   oooooo     " << (char)3 << endl;
 		cout << "\t  o    ooooo   o  o   o  o   o  o   o  o   o  o   o   o         o    ooooo           ooo           o   oooooo     " << (char)3 << endl;
 		cout << "\t  o    oo  o   o  ooooo  o   o  ooooo  o   o  oooo    o         o         o          ooo           o   o          " << (char)3 << endl;
-		cout << "\t  o        o   o         o   o         o   o         o          o         o          ooo           o   ooooooo    " << (char)3 << endl;
+		cout << "\t  o        o   o         o   o         o   o         o          o         o          ooo           o   ooooooo    " << endl;
 		cout << "\t  oooooooooo   ooooooooooo   ooooooooooo   oooooooooo           oooooooooo           ooo           ooooooooooo    " << (char)3 << endl;
 		cout << endl << endl;
 		Sleep(500);
+		i++;
 	}
 }

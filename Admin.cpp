@@ -147,7 +147,6 @@ class Admin
 			{
 				DS_SanPham.push_back(spnew);
 			}
-			
 			UpdateFile(DS_SanPham);
 			SetColor(0, 12);
 			cout << "Them san pham thanh cong !" << endl;
@@ -180,7 +179,6 @@ class Admin
 		            break; 
 		        }
 		    }
-		    
 		    if (kt) 
 		    {
 		    	SetColor(0, 12);

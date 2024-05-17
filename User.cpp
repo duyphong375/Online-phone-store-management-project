@@ -14,8 +14,6 @@ class User
 	private:
 		string un;
 		string pw;
-		long long TongTien;
-		int TongSoLuong;
 	public:
 		User() {}
 		
@@ -35,16 +33,6 @@ class User
 			this->pw = pw;
 		}
 		
-		void setTongSoLuong(int TongSoLuong)
-		{
-			this->TongSoLuong = TongSoLuong;
-		}
-		
-		void setTongTien(int TongTien)
-		{
-			this->TongTien = TongTien;
-		}
-		
 		string getUN() const
 		{
 			return un;
@@ -53,16 +41,6 @@ class User
 		string getPW() const
 		{
 			return pw;
-		}
-		
-		int getTongSoLuong() const
-		{
-			return TongSoLuong;
-		}
-		
-		long long getTongTien() const
-		{
-			return TongTien;
 		}
 		 
 		void Mua(vector<SanPham> &DS_SanPham, const string &stt, int soluong)
@@ -78,8 +56,6 @@ class User
 		                int soluongmoi = sp.getSoLuong() - soluong;
 		                sp.setSoLuong(soluongmoi);
 		
-		                TongSoLuong += soluong;
-		                TongTien += sp.getGia() * soluong;
 						SetColor(0, 12);
 		                cout << "Da mua thanh cong " << soluong << " san pham " << sp.getTenSanPham() << endl;
 						SetColor(0, 7);
@@ -258,19 +234,27 @@ class User
 		        switch (chon) 
 				{
 		            case 1:
+		            {
 		                TangDan(DS_SanPham);
 		                kt = false;
 		                break;
+		            }
 		            case 2:
-		                GiamDan(DS_SanPham);
+		            {    
+						GiamDan(DS_SanPham);
 		                kt = false;
 		                break;
+		            }
 		            case 3:
-		                kt = false;
+		            {   
+						kt = false;
 		                break;
+		            }
 		            default:
+		        	{
 		            	SetColor(0, 12);
 		                cout << "Vui long nhap lai lua chon tu (1 - 3) !" << endl;
+		            }
 		        }
 		    } while (kt);
 		    SetColor(0, 15);
