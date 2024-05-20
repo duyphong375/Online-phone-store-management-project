@@ -80,10 +80,10 @@ class Admin
 		
 		void DanhSachBan()
 		{
-		    ifstream filein("thongtinmua.csv");
+		    ifstream filein("thongtinban.csv");
 		    if (!filein.is_open())
 		    {
-		        cerr << "Khong the mo file thongtinmua.csv!" << endl;
+		        cerr << "Khong the mo file thongtinban.csv!" << endl;
 		        return;
 		    }
 			SetColor(0, 10);
@@ -152,6 +152,7 @@ class Admin
 			cout << "Them san pham thanh cong !" << endl;
 			SetColor(0, 7);
 			system("pause");
+			system("cls");
 			SetColor(0, 10);
 			cout << "\n\n--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
 		    cout << endl;
@@ -193,8 +194,10 @@ class Admin
 		        }
 		        
 		        UpdateFile(DS_SanPham);
-		        SetColor(0, 10);
+		        SetColor(0, 7);
 		        system("pause");
+		        system("cls");
+		        SetColor(0, 10);
 				cout << "--------------------------- DANH SACH SAN PHAM HIEN CO --------------------------" << endl;
 			    cout << endl;
 			    SetColor(0, 15);
@@ -216,7 +219,7 @@ class Admin
 		    }
 		}
 		
-		void ad4(vector<SanPham> &DS_SanPham, const string &stt, const int newgia)
+		void ad4(vector<SanPham> &DS_SanPham, const string &stt, const int newgia, const int newsoluong)
 		{
 			bool kt = false;
 			for(int i = 0; i < DS_SanPham.size(); i++)
@@ -224,6 +227,7 @@ class Admin
 				if(DS_SanPham[i].getSTT() == stt)
 				{
 					DS_SanPham[i].setGia(newgia);
+					DS_SanPham[i].setSoLuong(newsoluong);
 					kt = true;
 					break;
 				}
@@ -260,7 +264,7 @@ class Admin
 	
 		void ad5(vector<SanPham> &DS_SanPham)
 		{
-			ifstream filein("thongtinmua.csv");
+			ifstream filein("thongtinban.csv");
 			if (!filein.is_open())
 			{
 			    cerr << "Khong the mo file de doc!" << endl;
@@ -292,9 +296,10 @@ class Admin
 			cout << endl;
 			SetColor(0, 10);
 			cout << "---------------------------------------------------------------------------------" << endl;
+			SetColor(0, 15);
 			cout << (char)26 << " " << "Tong so luong da ban: " << tongdonhang << " cai dien thoai " << endl;
 			cout << (char)26 << " " << "Tong doanh thu cua cua hang: " << tongdoanhthu << " vnd " << endl;
-				
+			SetColor(0, 7);
 			filein.close();
 		}
 };
@@ -310,7 +315,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 		cout << "	   \t\t | 2. THEM SAN PHAM                        | " << endl;
 		cout << "	   \t\t | 3. XOA SAN PHAM                         | " << endl;
 		cout << "	   \t\t | 4. CHINH SUA SAN PHAM                   | " << endl;
-		cout << "	   \t\t | 5. THONG KE TONG DOANH THU LOI NHUAN    | " << endl;
+		cout << "	   \t\t | 5. THONG KE TONG DOANH THU              | " << endl;
 		cout << "	   \t\t | 6. DANG XUAT                            | " << endl;
 		cout << "	   \t\t +-----------------------------------------+ " << endl;
 		
@@ -543,7 +548,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			{
 				us.us1(DS_SanPham);
 				string stt;
-				int gia;
+				int gia, soluong;
 				SetColor(0, 10);
 				cout << "---------------------------------------------------------------------------------" << endl;
 				SetColor(0, 15);
@@ -552,7 +557,9 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 				getline(cin ,stt);
 				cout << "Nhap gia can chinh sua cho san pham: ";
 				cin >> gia;
-				ad.ad4(DS_SanPham, stt, gia);
+				cout << "Nhap so luong can chinh sua cho san pham: ";
+				cin >> soluong;
+				ad.ad4(DS_SanPham, stt, gia, soluong);
 				
 				bool kt1 = true; 
 			    while (kt1)
@@ -580,7 +587,9 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 							getline(cin ,stt);
 							cout << "Nhap gia can chinh sua cho san pham: ";
 							cin >> gia;
-							ad.ad4(DS_SanPham, stt, gia);
+							cout << "Nhap gia can chinh sua cho san pham: ";
+							cin >> soluong;
+							ad.ad4(DS_SanPham, stt, gia, soluong);
 							break;
 						}
 						case 2:

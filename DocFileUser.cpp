@@ -28,7 +28,7 @@ void DocFileUser(vector <User> &DS_User)
 		stringstream ss(line);
 		string un, pw;
 		getline(ss, un, ',');
-		getline(ss, pw);
+		getline(ss, pw, '\n');
 		
 		us.setUN(un);
 		us.setPW(pw);
@@ -51,7 +51,7 @@ void UpdateFile1(const vector<User> &DS_User)
 	fileout << "Tai Khoan,Mat Khau" << endl;
     for (const User &us : DS_User)
     {
-        fileout << us.getUN() << ',' << us.getPW() << '\n';
+        fileout << us.getUN() << ',' << us.getPW() << endl;
     }
 
     fileout.close();

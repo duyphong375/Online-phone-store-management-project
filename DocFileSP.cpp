@@ -46,7 +46,7 @@ void DocFileSP(vector<SanPham> &DS_SanPham)
 
 void GhiThongTinMuaHang(const string &stt, string hang, string tensp, int soluong, long long gia)
 {
-    ofstream fileout("thongtinmua.csv", ios::app);
+    ofstream fileout("thongtinban.csv", ios::app);
     if (!fileout.is_open())
     {
         cerr << "Khong the mo file de ghi!" << endl;
@@ -71,7 +71,7 @@ void UpdateFile(const vector<SanPham> &DS_SanPham)
 
     for (const SanPham &sp : DS_SanPham)
     {
-        fileout << sp.getSTT() << ',' << sp.getHang() << ',' << sp.getTenSanPham() << ',' << sp.getGia() << ',' << sp.getSoLuong() << '\n';
+        fileout << sp.getSTT() << ',' << sp.getHang() << ',' << sp.getTenSanPham() << ',' << sp.getGia() << ',' << sp.getSoLuong() << endl;
     }
 
     fileout.close();
