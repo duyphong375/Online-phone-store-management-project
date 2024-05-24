@@ -4,6 +4,11 @@
 #include <windows.h>
 using namespace std;
 
+BOOL WINAPI SetConsoleTitle
+(
+  _In_ LPCTSTR lpConsoleTitle
+);
+
 void SetColor(int mau_nen, int mau_chu)
 {
 	HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -39,23 +44,23 @@ void hinhnen()
 			system("cls");
 			SetRandomColor();
 			cout << "\n\n" ;
-	        cout << "\t  oooooo     oooooo     oooooo   ooooooooooo   ooooo        ooooooooooo   ooooooooooo          ooooo    ooooo          ooooooooooo        ooooooooooooo   ooooooooooo            " << endl;
-		    cout << "\t   o    o   o      o   o    o    o   ooooooo   o   o        o         o   o         o         o     o  o     o         o   ooooooo        o           o   o         o            " << endl;
-		    cout << "\t    o    o o        o o    o     o   o         o   o        o    oooooo   o  ooooo  o        o       oo       o        o   o              ooooo   ooooo   o  ooooo  o            " << endl;
-		    cout << "\t     o    o          o    o      o   oooooo    o   o        o    o        o  o   o  o       o                  o       o   oooooo             o   o       o  o   o  o            " << endl;
-		    cout << "\t      o                  o       o   oooooo    o   o        o    o        o  o   o  o      o    o          o    o      o   oooooo             o   o       o  o   o  o            " << endl;
-		    cout << "\t       o       oo       o        o   o         o   oooooo   o    oooooo   o  ooooo  o     o    o o        o o    o     o   o                  o   o       o  ooooo  o            " << endl;
-		    cout << "\t        o     o  o     o         o   ooooooo   o        o   o         o   o         o    o    o   o      o   o    o    o   ooooooo            o   o       o         o            " << endl;
-		    cout << "\t         ooooo    ooooo          ooooooooooo   oooooooooo   ooooooooooo   ooooooooooo   oooooo     oooooo     oooooo   ooooooooooo            ooooo       ooooooooooo            " << endl;
-		    cout << "\n";
-		    cout << "\t   ooooooooooo   oooooooooooo        oooooooooooo   oooooooooooo   ooooooooooo   ooooo  ooooo   ooooooooooo        ooooooooooo   oooooooooooo   ooooooooooo   oooooooooooo       " << endl;
-		    cout << "\t   o         o   o  oooo    o        o  oooo    o   o   o  o   o   o         o   o    o o   o   o   ooooooo        o  oooooooo   o   o  o   o   o         o   o  oooo    o       " << endl;
-		    cout << "\t   o    oooooo   o  o  o    o        o  o  o    o   o   o  o   o   o  ooooo  o   o     oo   o   o   o              o  o          o   o  o   o   o  ooooo  o   o  o  o    o       " << endl;
-		    cout << "\t   o    o        o  oooo    o        o  oooo    o   o   oooo   o   o  o   o  o   o      o   o   o   oooooo         o  oooooooo   o   oooo   o   o  o   o  o   o  oooo    o       " << endl;
-		    cout << "\t   o    o        o    ooooooo        o    ooooooo   o   oooo   o   o  o   o  o   o   o      o   o   oooooo         oooooooo  o   o   oooo   o   o  o   o  o   o    ooooooo       " << endl;
-		    cout << "\t   o    oooooo   o    o              o    o         o   o  o   o   o  ooooo  o   o   oo     o   o   o                     o  o   o   o  o   o   o  ooooo  o   o    o             " << endl;
-		    cout << "\t   o         o   o    o              o    o         o   o  o   o   o         o   o   o o    o   o   ooooooo        oooooooo  o   o   o  o   o   o         o   o    o             " << endl;
-		    cout << "\t   ooooooooooo   oooooo              oooooo         ooooo  ooooo   ooooooooooo   ooooo  ooooo   ooooooooooo        ooooooooooo   ooooo  ooooo   ooooooooooo   oooooo             " << endl;
+			cout << "\t  ||||||     ||||||     ||||||   |||||||||||   |||||        |||||||||||   |||||||||||          |||||    |||||          |||||||||||        |||||||||||||   |||||||||||            " << endl;
+			cout << "\t   |    |   |      |   |    |    |   |||||||   |   |        |         |   |         |         |     |  |     |         |   |||||||        |           |   |         |            " << endl;
+			cout << "\t    |    | |        | |    |     |   |         |   |        |    ||||||   |  |||||  |        |       ||       |        |   |              |||||   |||||   |  |||||  |            " << endl;
+			cout << "\t     |    |          |    |      |   ||||||    |   |        |    |        |  |   |  |       |                  |       |   ||||||             |   |       |  |   |  |            " << endl;
+			cout << "\t      |                  |       |   ||||||    |   |        |    |        |  |   |  |      |    |          |    |      |   ||||||             |   |       |  |   |  |            " << endl;
+			cout << "\t       |       ||       |        |   |         |   ||||||   |    ||||||   |  |||||  |     |    | |        | |    |     |   |                  |   |       |  |||||  |            " << endl;
+			cout << "\t        |     |  |     |         |   |||||||   |        |   |         |   |         |    |    |   |      |   |    |    |   |||||||            |   |       |         |            " << endl;
+			cout << "\t         |||||    |||||          |||||||||||   ||||||||||   |||||||||||   |||||||||||   ||||||     ||||||     ||||||   |||||||||||            |||||       |||||||||||            " << endl;
+			cout << "\n";
+			cout << "\t   |||||||||||   ||||||||||||        ||||||||||||   |||||  |||||   |||||||||||   |||||  |||||   |||||||||||        |||||||||||   |||||  |||||   |||||||||||   ||||||||||||       " << endl;
+			cout << "\t   |         |   |  ||||    |        |  ||||    |   |   |  |   |   |         |   |    | |   |   |   |||||||        |  ||||||||   |   |  |   |   |         |   |  ||||    |       " << endl;
+			cout << "\t   |    ||||||   |  |  |    |        |  |  |    |   |   |  |   |   |  |||||  |   |     ||   |   |   |              |  |          |   |  |   |   |  |||||  |   |  |  |    |       " << endl;
+			cout << "\t   |    |        |  ||||    |        |  ||||    |   |   ||||   |   |  |   |  |   |      |   |   |   ||||||         |  ||||||||   |   ||||   |   |  |   |  |   |  ||||    |       " << endl;
+			cout << "\t   |    |        |    |||||||        |    |||||||   |   ||||   |   |  |   |  |   |   |      |   |   ||||||         ||||||||  |   |   ||||   |   |  |   |  |   |    |||||||       " << endl;
+			cout << "\t   |    ||||||   |    |              |    |         |   |  |   |   |  |||||  |   |   ||     |   |   |                     |  |   |   |  |   |   |  |||||  |   |    |             " << endl;
+			cout << "\t   |         |   |    |              |    |         |   |  |   |   |         |   |   | |    |   |   |||||||        ||||||||  |   |   |  |   |   |         |   |    |             " << endl;
+			cout << "\t   |||||||||||   ||||||              ||||||         |||||  |||||   |||||||||||   |||||  |||||   |||||||||||        |||||||||||   |||||  |||||   |||||||||||   ||||||             " << endl;
 		    Sleep(300);
 		    i++;
 		}
@@ -64,23 +69,23 @@ void hinhnen()
 void hinhnen1()
 {
 	cout << "\n\n" ;
-	cout << "\t  oooooo     oooooo     oooooo   ooooooooooo   ooooo        ooooooooooo   ooooooooooo          ooooo    ooooo          ooooooooooo        ooooooooooooo   ooooooooooo            " << endl;
-	cout << "\t   o    o   o      o   o    o    o   ooooooo   o   o        o         o   o         o         o     o  o     o         o   ooooooo        o           o   o         o            " << endl;
-	cout << "\t    o    o o        o o    o     o   o         o   o        o    oooooo   o  ooooo  o        o       oo       o        o   o              ooooo   ooooo   o  ooooo  o            " << endl;
-	cout << "\t     o    o          o    o      o   oooooo    o   o        o    o        o  o   o  o       o                  o       o   oooooo             o   o       o  o   o  o            " << endl;
-	cout << "\t      o                  o       o   oooooo    o   o        o    o        o  o   o  o      o    o          o    o      o   oooooo             o   o       o  o   o  o            " << endl;
-	cout << "\t       o       oo       o        o   o         o   oooooo   o    oooooo   o  ooooo  o     o    o o        o o    o     o   o                  o   o       o  ooooo  o            " << endl;
-	cout << "\t        o     o  o     o         o   ooooooo   o        o   o         o   o         o    o    o   o      o   o    o    o   ooooooo            o   o       o         o            " << endl;
-	cout << "\t         ooooo    ooooo          ooooooooooo   oooooooooo   ooooooooooo   ooooooooooo   oooooo     oooooo     oooooo   ooooooooooo            ooooo       ooooooooooo            " << endl;
+	cout << "\t  ||||||     ||||||     ||||||   |||||||||||   |||||        |||||||||||   |||||||||||          |||||    |||||          |||||||||||        |||||||||||||   |||||||||||            " << endl;
+	cout << "\t   |    |   |      |   |    |    |   |||||||   |   |        |         |   |         |         |     |  |     |         |   |||||||        |           |   |         |            " << endl;
+	cout << "\t    |    | |        | |    |     |   |         |   |        |    ||||||   |  |||||  |        |       ||       |        |   |              |||||   |||||   |  |||||  |            " << endl;
+	cout << "\t     |    |          |    |      |   ||||||    |   |        |    |        |  |   |  |       |                  |       |   ||||||             |   |       |  |   |  |            " << endl;
+	cout << "\t      |                  |       |   ||||||    |   |        |    |        |  |   |  |      |    |          |    |      |   ||||||             |   |       |  |   |  |            " << endl;
+	cout << "\t       |       ||       |        |   |         |   ||||||   |    ||||||   |  |||||  |     |    | |        | |    |     |   |                  |   |       |  |||||  |            " << endl;
+	cout << "\t        |     |  |     |         |   |||||||   |        |   |         |   |         |    |    |   |      |   |    |    |   |||||||            |   |       |         |            " << endl;
+	cout << "\t         |||||    |||||          |||||||||||   ||||||||||   |||||||||||   |||||||||||   ||||||     ||||||     ||||||   |||||||||||            |||||       |||||||||||            " << endl;
 	cout << "\n";
-	cout << "\t   ooooooooooo   oooooooooooo        oooooooooooo   oooooooooooo   ooooooooooo   ooooo  ooooo   ooooooooooo        ooooooooooo   oooooooooooo   ooooooooooo   oooooooooooo       " << endl;
-	cout << "\t   o         o   o  oooo    o        o  oooo    o   o   o  o   o   o         o   o    o o   o   o   ooooooo        o  oooooooo   o   o  o   o   o         o   o  oooo    o       " << endl;
-	cout << "\t   o    oooooo   o  o  o    o        o  o  o    o   o   o  o   o   o  ooooo  o   o     oo   o   o   o              o  o          o   o  o   o   o  ooooo  o   o  o  o    o       " << endl;
-	cout << "\t   o    o        o  oooo    o        o  oooo    o   o   oooo   o   o  o   o  o   o      o   o   o   oooooo         o  oooooooo   o   oooo   o   o  o   o  o   o  oooo    o       " << endl;
-	cout << "\t   o    o        o    ooooooo        o    ooooooo   o   oooo   o   o  o   o  o   o   o      o   o   oooooo         oooooooo  o   o   oooo   o   o  o   o  o   o    ooooooo       " << endl;
-	cout << "\t   o    oooooo   o    o              o    o         o   o  o   o   o  ooooo  o   o   oo     o   o   o                     o  o   o   o  o   o   o  ooooo  o   o    o             " << endl;
-	cout << "\t   o         o   o    o              o    o         o   o  o   o   o         o   o   o o    o   o   ooooooo        oooooooo  o   o   o  o   o   o         o   o    o             " << endl;
-	cout << "\t   ooooooooooo   oooooo              oooooo         ooooo  ooooo   ooooooooooo   ooooo  ooooo   ooooooooooo        ooooooooooo   ooooo  ooooo   ooooooooooo   oooooo             " << endl;
+	cout << "\t   |||||||||||   ||||||||||||        ||||||||||||   |||||  |||||   |||||||||||   |||||  |||||   |||||||||||        |||||||||||   |||||  |||||   |||||||||||   ||||||||||||       " << endl;
+	cout << "\t   |         |   |  ||||    |        |  ||||    |   |   |  |   |   |         |   |    | |   |   |   |||||||        |  ||||||||   |   |  |   |   |         |   |  ||||    |       " << endl;
+	cout << "\t   |    ||||||   |  |  |    |        |  |  |    |   |   |  |   |   |  |||||  |   |     ||   |   |   |              |  |          |   |  |   |   |  |||||  |   |  |  |    |       " << endl;
+	cout << "\t   |    |        |  ||||    |        |  ||||    |   |   ||||   |   |  |   |  |   |      |   |   |   ||||||         |  ||||||||   |   ||||   |   |  |   |  |   |  ||||    |       " << endl;
+	cout << "\t   |    |        |    |||||||        |    |||||||   |   ||||   |   |  |   |  |   |   |      |   |   ||||||         ||||||||  |   |   ||||   |   |  |   |  |   |    |||||||       " << endl;
+	cout << "\t   |    ||||||   |    |              |    |         |   |  |   |   |  |||||  |   |   ||     |   |   |                     |  |   |   |  |   |   |  |||||  |   |    |             " << endl;
+	cout << "\t   |         |   |    |              |    |         |   |  |   |   |         |   |   | |    |   |   |||||||        ||||||||  |   |   |  |   |   |         |   |    |             " << endl;
+	cout << "\t   |||||||||||   ||||||              ||||||         |||||  |||||   |||||||||||   |||||  |||||   |||||||||||        |||||||||||   |||||  |||||   |||||||||||   ||||||             " << endl;
 }
 
 void ve()
@@ -130,21 +135,46 @@ void ve()
 void hinhnen2()
 {
 	int i = 0;
-	while(i < 30)
+	while(i < 10)
 	{
 		system("cls");
-		SetRandomColor();
 		cout << "\n\n" ;
-		cout << "\t  oooooooooo   ooooooooooo   ooooooooooo   oooooooooo           oooooooooo    oooooo     ooooooo   ooooooooooo    " << (char)3 << endl;
-		cout << "\t  o        o   o         o   o         o   o         o          o        o      ooooo   ooooo      o   ooooooo    " << (char)3 << endl;
-		cout << "\t  o       ooo  o  ooooo  o   o  ooooo  o   o  oooo    o         o    ooooo        oooo oooo        o   o          " << (char)3 << endl;
-		cout << "\t  o            o  o   o  o   o  o   o  o   o  o   o   o         o   o               ooooo          o   oooooo     " << (char)3 << endl;
-		cout << "\t  o    ooooo   o  o   o  o   o  o   o  o   o  o   o   o         o    ooooo           ooo           o   oooooo     " << (char)3 << endl;
-		cout << "\t  o    oo  o   o  ooooo  o   o  ooooo  o   o  oooo    o         o         o          ooo           o   o          " << (char)3 << endl;
-		cout << "\t  o        o   o         o   o         o   o         o          o         o          ooo           o   ooooooo    " << endl;
-		cout << "\t  oooooooooo   ooooooooooo   ooooooooooo   oooooooooo           oooooooooo           ooo           ooooooooooo    " << (char)3 << endl;
+		SetRandomColor();
+		cout << "\t  ||||||||||   |||||||||||   |||||||||||   ||||||||||           ||||||||||    ||||||     |||||||   |||||||||||    " << (char)3 << endl;
+		cout << "\t  ||       |   |         |   |         |   |         |          |        |      |||||   |||||      |   |||||||    " << (char)3 << endl;
+		cout << "\t  ||      |||  |  |||||  |   |  |||||  |   |  ||||    |         |    |||||        |||| ||||        |   |          " << (char)3 << endl;
+		cout << "\t  ||           |  |   |  |   |  |   |  |   |  |   |   |         |   |               |||||          |   ||||||     " << (char)3 << endl;
+		cout << "\t  ||   |||||   |  |   |  |   |  |   |  |   |  |   |   |         |    |||||           |||           |   ||||||     " << (char)3 << endl;
+		cout << "\t  ||   ||  |   |  |||||  |   |  |||||  |   |  ||||    |         |         |          |||           |   |          " << (char)3 << endl;
+		cout << "\t  ||       |   |         |   |         |   |         |          |         |          |||           |   |||||||    " << endl;
+		cout << "\t  ||||||||||   |||||||||||   |||||||||||   ||||||||||           ||||||||||           |||           |||||||||||    " << (char)3 << endl;
+			GoTo(50, 17);
+		    cout << "   " <<(char)3 << " " << (char)3 << " " << (char)3 << "       " << (char)3 << " " << (char)3 << " " << (char)3 << endl;
+		    GoTo(50, 18);
+			cout << " " << (char)3 << "       " << (char)3 << "   " << (char)3 << "       " << (char)3 << endl;
+			GoTo(50, 19);
+			cout << (char)3 << "          " << (char)3 << "          " << (char)3 << endl;
+			GoTo(50, 20);
+			cout << (char)3 << "                     " << (char)3 << endl;
+			GoTo(50, 21);
+			cout << (char)3 << "                     " << (char)3 << endl;
+			GoTo(50, 22);
+			cout << (char)3 << "                     " << (char)3 << endl;
+			GoTo(50, 23);
+			cout << " " << (char)3 << "                   " << (char)3 << endl;
+			GoTo(50, 24);
+			cout << "   " << (char)3 << "               " << (char)3 << endl;
+			GoTo(50, 25);
+			cout << "     " << (char)3 << "           " << (char)3 << endl;
+			GoTo(50, 26);
+			cout << "       " << (char)3 << "       " << (char)3 << endl;
+			GoTo(50, 27);
+			cout << "         " << (char)3 << "   " << (char)3 << endl;
+			GoTo(50, 28);
+			cout << "           " << (char)3 << "       " << endl;
 		cout << endl << endl;
 		Sleep(500);
 		i++;
+		SetColor(0, 7);
 	}
 }

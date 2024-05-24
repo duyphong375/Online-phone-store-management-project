@@ -19,10 +19,9 @@ void DocFileUser(vector <User> &DS_User)
 	}
 	
 	string line;
-	getline(filein,line); // Bo qua dong tieu de
-	getline(filein, line); // Bo qua tai khoan Admin
-	// Doc tung dong trong file data.csv va them vao DS_User
-	while(getline(filein, line))
+	getline(filein, line); // Bo qua dong tieu de
+	getline(filein, line); // Bo qua tai khoan admin
+	while(getline(filein, line)) // Doc tung dong trong file data.csv va them vao DS_User
 	{
 		User us;
 		stringstream ss(line);
@@ -49,11 +48,12 @@ void UpdateFile1(const vector<User> &DS_User)
     }
 
 	fileout << "Tai Khoan,Mat Khau" << endl;
+	fileout << "AdminCP,AdminCP" << endl;
+	
     for (const User &us : DS_User)
     {
         fileout << us.getUN() << ',' << us.getPW() << endl;
     }
-
     fileout.close();
     remove("data.csv");
     rename("datanew.csv", "data.csv");

@@ -68,11 +68,11 @@ class Admin
 		string MaxSTT(const vector<SanPham> &DS_SanPham)
 		{
 			string maxstt = "0";
-			for(const SanPham &sp : DS_SanPham)
+			for(int i = 0; i < DS_SanPham.size(); ++i)
 			{
-				if(stoi(sp.getSTT()) > stoi(maxstt))
+				if(stoi(DS_SanPham[i].getSTT()) > stoi(maxstt))
 				{
-					maxstt = sp.getSTT();
+					maxstt = DS_SanPham[i].getSTT();
 				}
 			}
 			return maxstt;
@@ -117,7 +117,7 @@ class Admin
 		void ad1(const vector<User> &DS_User)
 		{
 			SetColor(0, 10);
-			cout << "\n\n ------------- DANH SACH CAC TAI KHOAN -------------" << endl;
+			cout << "\n\n ------------- DANH SACH CAC TAI KHOAN ---------------------" << endl;
 			cout << endl;
 			SetColor(0, 15);
 			cout << "\t+---------------------+---------------------+" << endl;
@@ -232,7 +232,6 @@ class Admin
 					break;
 				}
 			}
-			
 			if(kt)
 			{
 				SetColor(0, 12);
@@ -329,6 +328,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 		{
 			case 1:
 			{
+				system("cls");
 			    ad.ad1(DS_User);
 			
 			    bool kt1 = true;
@@ -337,7 +337,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			    	a:
 			        cout << endl;
 			        SetColor(0, 10);
-			        cout << "---------------------------------------------" << endl;
+			        cout << "------------------------------------------------------------" << endl;
 			        cout << "1. Xoa tai khoan " << endl;
 			        cout << "2. Tro ve MENU ADMIN " << endl;
 			        int chon;
@@ -379,6 +379,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
         			}
         			
 					SetColor(0, 10);
+					cout << "------------------------------------------------------------" << endl;
 			        cout << "Ban co muon tiep tuc xoa tai khoan khong ? " << endl;
 			        cout << "1. Co " << endl;
 			        cout << "2. Khong " << endl;
@@ -479,7 +480,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			            default:
 			            {
 			            	SetColor(0, 12);
-			                cout << "Vui long nhap lai lua chon (1 - 2) ! " << endl;
+			                cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
 			                goto b;
 			                SetColor(0, 7);
 			                break;
@@ -629,7 +630,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			default:
 			{
 				SetColor(0, 12);
-				cout << "vui long nhap lai lua chon (1 - 6) ! " << endl;
+				cout << "vui long nhap lai lua chon (1 - 6)! " << endl;
 				SetColor(0, 7);
 				system("pause");
 				break;

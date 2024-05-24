@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void DangKi() 
+void DangKi(vector<User> &DS_User) 
 {
 	SetColor(0, 11);
     cout << "\t ---------- MOI BAN DANG KI TAI KHOAN ---------" << endl;
@@ -28,15 +28,15 @@ void DangKi()
         cerr << "Khong the mo file data.csv !" << endl;
         return;
     }
-
+	
     fileout << un << "," << pw << endl;
+    DS_User.push_back(User(un, pw));
     SetColor(0, 11);
     cout << "\t " << (char)26 << " " << "Da tao tai khoan thanh cong ! " << endl;
     SetColor(0, 7);
     system("pause");
     fileout.close();
 }
-
 
 void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User) 
 {
@@ -57,7 +57,7 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
         cerr << "Khong the mo file data.csv !" << endl;
         return;
     }
-
+	
     string line;
     bool kt = false;
     while (getline(filein, line)) 
@@ -74,7 +74,9 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
             break;
         }
     }
-
+	
+	filein.close();
+	
     if(kt) 
 	{
 		SetColor(0, 12);
@@ -86,11 +88,13 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
 			SetColor(0,7);
 			Admin ad(un, pw);
 			User us(un, pw);
+			SetConsoleTitle("ADMIN");
             MenuAdmin(ad, us, DS_SanPham, DS_User);
         } 
 		else 
 		{
             User us(un, pw);
+            SetConsoleTitle("USER");
             MenuUser(us, DS_SanPham);
         }
     } 
@@ -104,8 +108,7 @@ void DangNhap(vector<SanPham> &DS_SanPham, vector<User> &DS_User)
     }
 }
 
-
-void DoiMatKhau() 
+void DoiMatKhau(vector<User> &DS_User) 
 {
 	SetColor(0, 11);
     cout << "\t ------------ MOI BAN DOI MAT KHAU ------------" << endl;
@@ -144,6 +147,14 @@ void DoiMatKhau()
             string new_pw;
             getline(cin, new_pw);
             fileout << un << "," << new_pw << endl;
+            for (User &us : DS_User) 
+			{
+                if (us.getUN() == un) 
+				{
+                    us.setPW(new_pw);
+                    break;
+                }
+            }
             SetColor(0, 11);
             cout << "\t " << (char)26 << " " << "Doi mat khau thanh cong !" << endl;
             SetColor(0, 7);
@@ -170,7 +181,6 @@ void DoiMatKhau()
     }
 }
 
-
 int main() 
 {
     vector<SanPham> DS_SanPham;
@@ -179,7 +189,9 @@ int main()
     DocFileUser(DS_User);
 
     int luachon;
+    SetConsoleTitle("QUAN LI CUA HANG");
     hinhnen();
+    
     do 
 	{
 		system("cls");
@@ -211,7 +223,7 @@ int main()
 		{
             case 1:
             {
-            	DangKi();
+            	DangKi(DS_User);
                 system("cls");
                 break;	
 			}
@@ -223,7 +235,7 @@ int main()
 			}
             case 3:
             {
-            	DoiMatKhau();
+            	DoiMatKhau(DS_User);
                 system("cls");
                 break;
 			}
@@ -231,7 +243,6 @@ int main()
             {
 				hinhnen2();
                 SetColor(0, 7);
-                system("pause");
                 break;
 			}
             default:
@@ -244,6 +255,5 @@ int main()
 			}
         }
     } while (luachon != 4);	
-    
     return 0;
 }

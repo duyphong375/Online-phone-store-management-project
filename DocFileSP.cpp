@@ -10,6 +10,7 @@
 
 using namespace std;
 
+
 void DocFileSP(vector<SanPham> &DS_SanPham)
 {
 	ifstream filein("cuahangcp.csv");
@@ -20,8 +21,7 @@ void DocFileSP(vector<SanPham> &DS_SanPham)
 	}
 	string line;
 	getline(filein, line); // Bo qua dong tieu de
-	// Doc tung dong trong file cuahangcp.csv va them vao DS_SanPham
-	while(getline(filein, line))
+	while(getline(filein, line)) // Doc tung dong trong file cuahangcp.csv va them vao DS_SanPham
 	{
 		SanPham sp;
 		stringstream ss(line);
@@ -44,7 +44,7 @@ void DocFileSP(vector<SanPham> &DS_SanPham)
 	filein.close();
 }
 
-void GhiThongTinMuaHang(const string &stt, string hang, string tensp, int soluong, long long gia)
+void GhiThongTinBanHang(const string &stt, string hang, string tensp, int soluong, long long gia)
 {
     ofstream fileout("thongtinban.csv", ios::app);
     if (!fileout.is_open())

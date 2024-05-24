@@ -2,12 +2,13 @@
 #include <bits/stdc++.h>
 #include <iostream>
 #include <iomanip>
-#include <algorithm>
 #include "SanPham.cpp"
 #include "DocFileSP.cpp"
 #include "GiaoDien.cpp"
 
+
 using namespace std;
+
 
 class User
 {
@@ -59,7 +60,7 @@ class User
 						SetColor(0, 12);
 		                cout << "Da mua thanh cong " << soluong << " san pham " << sp.getTenSanPham() << endl;
 						SetColor(0, 7);
-		                GhiThongTinMuaHang(stt, sp.getHang(), sp.getTenSanPham(), soluong, sp.getGia());
+		                GhiThongTinBanHang(stt, sp.getHang(), sp.getTenSanPham(), soluong, sp.getGia());
 		                UpdateFile(DS_SanPham);
 		            }
 		            else
@@ -114,6 +115,23 @@ class User
 			}
 		}
 		
+		void TangDanSTT(vector<SanPham> &DS_SanPham)
+		{
+			int n = DS_SanPham.size();
+		    for(int i = 0; i < n - 1; i++)
+		    {
+		    	for(int j = i + 1; j < n; j++)
+		    	{
+		    		if(stoi(DS_SanPham[i].getSTT()) > stoi(DS_SanPham[j].getSTT()))
+		    		{
+		    			SanPham x = DS_SanPham[i];
+		    			DS_SanPham[i] = DS_SanPham[j];
+		    			DS_SanPham[j] = x;
+					}
+				}
+			}
+		}
+		
 		void us1(const vector<SanPham> &DS_SanPham)
 		{
 			SetColor(0, 10);
@@ -131,15 +149,6 @@ class User
 		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
 		}
 		
-//		string convert(string s)
-//		{
-//			for(int i = 0; i <= s.length(); i++)
-//			{
-//				s[i] = tolower(s[i]);
-//			}
-//			return s;
-//		}
-		
 		string convert(string s)
 		{
 			for(char &c : s)
@@ -149,7 +158,6 @@ class User
 			return s;
 		}
 
-		
 		void us2(const vector<SanPham> &DS_SanPham, const string &tensp)
 		{
 		    bool kt = false;
@@ -174,6 +182,7 @@ class User
 		            kt = true;
 		        }
 		    }
+		    
 		    if (!kt)
 		    {
 		    	SetColor(0, 12);
@@ -181,7 +190,6 @@ class User
 		    }
 		}
 
-		
 		void us3(vector<SanPham> &DS_SanPham, const string &hang)
 	    {
 	        bool kt = false;
@@ -206,6 +214,7 @@ class User
 	                kt = true;
 	            }
 	        }
+	        
 	        if (!kt)
 	        {
 	            SetColor(0, 12);
@@ -223,9 +232,10 @@ class User
 				SetColor(0, 10);
 		        cout << "\n\n--------------------------- SAP XEP SAN PHAM THEO GIA ---------------------------" << endl << endl;
 		        SetColor(0, 15);
-		        cout << "1. Sap xep theo gia tang dan" << endl;
-		        cout << "2. Sap xep theo gia giam dan" << endl;
-		        cout << "3. Tro ve MENU USER" << endl;
+		        cout << "+----------------------------------+" << endl;
+		        cout << "|1. Sap xep theo gia tang dan      |" << endl;
+		        cout << "|2. Sap xep theo gia giam dan      |" << endl;
+		        cout << "+----------------------------------+" << endl;
 		        SetColor(0, 15);
 	            cout << "Moi ban nhap lua chon: " << endl;
 	            cout << (char)26 << " " ;
@@ -237,39 +247,50 @@ class User
 		            {
 		                TangDan(DS_SanPham);
 		                kt = false;
+		                SetColor(0, 15);
+					    cout << "\n\n---------------------- DANH SACH SAN PHAM SAU KHI SAP XEP -----------------------" << endl;
+					    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+					    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << endl;
+					    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+					    for(const SanPham& sp : DS_SanPham) 
+						{
+							SetColor(0, 15);
+					        cout << "|" << setw(5) << sp.getSTT() << setw(4) << "|" << setw(9) << sp.getHang() << setw(4) << "|" << setw(26) << sp.getTenSanPham() << setw(4) << "|" << setw(10) << sp.getGia() << setw(4) << "|" << setw(10) << sp.getSoLuong() << setw(4) << "|" << endl;
+					        cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+					    }
+					    TangDanSTT(DS_SanPham);
 		                break;
 		            }
 		            case 2:
 		            {    
 						GiamDan(DS_SanPham);
 		                kt = false;
-		                break;
-		            }
-		            case 3:
-		            {   
-						kt = false;
+		                SetColor(0, 15);
+					    cout << "\n\n---------------------- DANH SACH SAN PHAM SAU KHI SAP XEP -----------------------" << endl;
+					    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+					    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << endl;
+					    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+					    for(const SanPham& sp : DS_SanPham) 
+						{
+							SetColor(0, 15);
+					        cout << "|" << setw(5) << sp.getSTT() << setw(4) << "|" << setw(9) << sp.getHang() << setw(4) << "|" << setw(26) << sp.getTenSanPham() << setw(4) << "|" << setw(10) << sp.getGia() << setw(4) << "|" << setw(10) << sp.getSoLuong() << setw(4) << "|" << endl;
+					        cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
+					    }
+					    TangDanSTT(DS_SanPham);
 		                break;
 		            }
 		            default:
 		        	{
 		            	SetColor(0, 12);
-		                cout << "Vui long nhap lai lua chon tu (1 - 3) !" << endl;
+		                cout << "Vui long nhap lai lua chon (1 - 3) !" << endl;
+		                system("pause");
+		                SetColor(0, 7);
+		                system("cls");
+		                break;
 		            }
 		        }
 		    } while (kt);
-		    SetColor(0, 15);
-		    cout << "\n\n---------------------- DANH SACH SAN PHAM SAU KHI SAP XEP -----------------------" << endl;
-		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
-		    cout << "|" << setw(5) << "STT" << setw(4) << "|" << setw(9) << "Hang" << setw(4) << "|" << setw(26) << "Ten San Pham" << setw(4) << "|" << setw(10) << "Gia" << setw(4) << "|" << setw(10) << "So Luong" << setw(4) << "|" << endl;
-		    cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
-		    for(const SanPham& sp : DS_SanPham) 
-			{
-				SetColor(0, 15);
-		        cout << "|" << setw(5) << sp.getSTT() << setw(4) << "|" << setw(9) << sp.getHang() << setw(4) << "|" << setw(26) << sp.getTenSanPham() << setw(4) << "|" << setw(10) << sp.getGia() << setw(4) << "|" << setw(10) << sp.getSoLuong() << setw(4) << "|" << endl;
-		        cout << "+--------+------------+-----------------------------+-------------+-------------+" << endl;
-		    }
-		}
-		
+		}	
 };
 
 void MenuUser(User &us, vector<SanPham> DS_SanPham) 
@@ -339,8 +360,9 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
-							goto a;
+							system("pause");
 							SetColor(0, 7);
+							goto a;
 							break;	
 						}
 					}
@@ -378,6 +400,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							system("pause");
 							SetColor(0, 7);
 							break;
 						}
@@ -434,9 +457,10 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon (1 - 2) ! " << endl;
-							goto b;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							system("pause");
 							SetColor(0, 7);
+							goto b;
 							break;	
 						}
 					}
@@ -474,6 +498,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							system("pause");
 							SetColor(0, 7);
 							break;
 						}
@@ -530,9 +555,10 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						default:
 						{
 							SetColor(0, 12);
-							cout << "Vui long nhap lai lua chon ! " << endl;
-							goto c;
+							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							system("pause");
 							SetColor(0, 7);
+							goto c;
 							break;	
 						}
 					}
@@ -570,6 +596,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							system("pause");
 							SetColor(0, 7);
 							break;
 						}
@@ -622,8 +649,9 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
-							goto d;
+							system("pause");
 							SetColor(0, 7);
+							goto d;
 							break;	
 						}
 					}
@@ -660,6 +688,8 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 						{
 							SetColor(0, 12);
 							cout << "Vui long nhap lai lua chon (1 - 2)! " << endl;
+							system("pause");
+							SetColor(0, 7);
 							break;
 						}
 					}
@@ -679,7 +709,7 @@ void MenuUser(User &us, vector<SanPham> DS_SanPham)
 			default:
 			{
 				SetColor(0, 12);
-				cout << "vui long nhap lai lua chon (1 - 5) ! " << endl;
+				cout << "vui long nhap lai lua chon (1 - 5)! " << endl;
 				system("pause");
 				SetColor(0, 7);
 				break;
