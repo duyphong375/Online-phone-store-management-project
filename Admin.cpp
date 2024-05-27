@@ -263,6 +263,7 @@ class Admin
 	
 		void ad5(vector<SanPham> &DS_SanPham)
 		{
+			system("cls");
 			ifstream filein("thongtinban.csv");
 			if (!filein.is_open())
 			{
@@ -416,6 +417,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			break;
 			case 2:
 			{
+				system("cls");
 			    us.us1(DS_SanPham);
 			    SetColor(0, 10);
 			    cout << "---------------------------------------------------------------------------------" << endl;
@@ -492,6 +494,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			break;
 			case 3:
 			{
+				system("cls");
 				us.us1(DS_SanPham);
 				string stt;
 				SetColor(0, 10);
@@ -547,6 +550,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
 			break;
 			case 4:
 			{
+				system("cls");
 				us.us1(DS_SanPham);
 				string stt;
 				int gia, soluong;
@@ -612,6 +616,7 @@ void MenuAdmin(Admin &ad, User &us, vector<SanPham> &DS_SanPham, vector<User> &D
  			break;
  			case 5:
 			{
+				system("cls");
 			    ad.ad5(DS_SanPham);
 			    system("pause");
 			    break;
