@@ -9,7 +9,7 @@
 
 using namespace std;
 
-void DocFileUser(vector <User> &DS_User)
+void DocFileUser(vector<User> &DS_User)
 {
 	ifstream filein("data.csv");
 	if(!filein.is_open())
